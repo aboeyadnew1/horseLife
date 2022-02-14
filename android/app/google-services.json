@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1046652315048",
+    "project_id": "life-hourse",
+    "storage_bucket": "life-hourse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046652315048:android:565730573334981afe299d",
+        "android_client_info": {
+          "package_name": "com.example.admin_life_horse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDggiCiX10A5nsdDeVuoq44rHaJ0dPoTAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046652315048:android:c65b6800d6afdb0bfe299d",
+        "android_client_info": {
+          "package_name": "com.example.hourse_life"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDggiCiX10A5nsdDeVuoq44rHaJ0dPoTAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
