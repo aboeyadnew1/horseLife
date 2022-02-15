@@ -1,3 +1,4 @@
+import 'package:admin_life_horse/screens/service_provider.dart';
 import 'package:admin_life_horse/screens/serviceprovideraccreditation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         Locale('en', '') // English, no country code
       ],
       locale: Locale("ar", "AE"),
-      home: ServiceProviderAccreditation(),
+      home: ProviderUsers(),
     );
   }
 }
