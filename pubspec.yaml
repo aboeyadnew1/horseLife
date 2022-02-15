@@ -52,6 +52,8 @@ dependencies:
   flutter_rating_stars: ^1.0.3+4
   smooth_star_rating: ^1.1.1
   font_awesome_flutter: ^9.2.0
+  firebase_messaging: ^11.2.6
+  http: ^0.13.4
 
 
 dev_dependencies:

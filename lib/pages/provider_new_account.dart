@@ -1,12 +1,14 @@
 // ignore_for_file: unused_import, camel_case_types, use_key_in_widget_constructors
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/home.dart';
 import 'package:hourse_life/pages/provider_new_acc_section_tow.dart';
 import 'package:hourse_life/services/static_data.dart';
-
+import 'package:http/http.dart' as http;
 import 'registration_done.dart';
 
 class providerNewAccount extends StatefulWidget {
@@ -118,10 +120,10 @@ class _providerNewAccountState extends State<providerNewAccount> {
                                 lat: '0',
                                 long: '0')
                             .toMap());
-   
 
                         var doc = await user.get();
                         setUserId(doc.id);
+                        sendNotification();
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -129,7 +131,6 @@ class _providerNewAccountState extends State<providerNewAccount> {
                           ),
                         );
                       }
-                     
                     },
                     child: Text(
                       'تسجيل',
@@ -184,6 +185,28 @@ class _providerNewAccountState extends State<providerNewAccount> {
         ],
       ),
     );
+  }
+
+  Future<void> sendNotification() async {
+    Map<String, dynamic> body = {
+      "to":
+          "dfjOKQnJRh-nDt6ZCnP9cz:APA91bFL4LvVwvX1qC_ECw-FsYiaFjS1pz9bIa4QW4Cs1dFVBP9mQTpvr1AENjxHpInC4iISlmnL47r8e6BJWSU4J-WKXDNEJ7PAwFsQ-A-1bc7lL4fEt7fgs1YywzWinL34aIpAkWOj",
+      'notification': {
+        'title': 'Hello FlutterFire!',
+        'body': 'This notification  was created via FCM!',
+      },
+    };
+
+    var response =
+        await http.post(Uri.parse('https://api.rnfirebase.io/messaging/send'),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Authorization':
+                  "Bearer AAAA87FW5ag:APA91bHilEsOvwFfVM3pQIYoZ80R-xUCb6SSzvmc3JNyIIRPXujPErOdCSISmJU1hsYuwzYVa3u4TU_ymSI6NjObsrGwsOfm5MYMXk4hDAk8EsN0inSMYTA518XnL4BBXbQ7q1BOrRtL"
+            },
+            body: jsonEncode(body));
+
+    print(response.body);
   }
 }
 //  decoration: InputDecoration(
