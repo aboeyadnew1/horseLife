@@ -10,6 +10,7 @@ class _trackPurchaseOrdersState extends State<trackPurchaseOrders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         toolbarHeight: 149,
         leading: new IconButton(
@@ -22,16 +23,13 @@ class _trackPurchaseOrdersState extends State<trackPurchaseOrders> {
             bottom: Radius.circular(30),
           ),
         ),
-        title: Center(
-          child: new Text(
-            'تتبع طلبات الشراء',
-            style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'Cairo',
-                color: Colors.white),
-          ),
-          
+        title: new Text(
+          'تتبع طلبات الشراء',
+          style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w400,
+              fontFamily: 'Cairo',
+              color: Colors.white),
         ),
         
       ),
@@ -47,16 +45,16 @@ class _trackPurchaseOrdersState extends State<trackPurchaseOrders> {
                     height: 29.0,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
                         height: 50.0,
-                        width: 120.0,
+                        width: 100.0,
                         child: ElevatedButton(
                             child: Text(
                               'طلبات تحت الإجراء',
                               style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.w400),
+                                  fontSize: 12.0, fontWeight: FontWeight.w400),
                             ),
                             onPressed: () {},
                             style: ButtonStyle(
@@ -68,12 +66,12 @@ class _trackPurchaseOrdersState extends State<trackPurchaseOrders> {
                         children: [
                           SizedBox(
                             height: 50.0,
-                            width: 120.0,
+                            width: 100.0,
                             child: ElevatedButton(
                                 child: Text(
                                   'طلبات معلقة',
                                   style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: 12.0,
                                       fontWeight: FontWeight.w400),
                                 ),
                                 onPressed: () {},
@@ -89,12 +87,12 @@ class _trackPurchaseOrdersState extends State<trackPurchaseOrders> {
                         children: [
                           SizedBox(
                             height: 50.0,
-                            width: 120.0,
+                            width: 100.0,
                             child: ElevatedButton(
                                 child: Text(
                                   'طلبات ملغية',
                                   style: TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: 12.0,
                                       fontWeight: FontWeight.w400),
                                 ),
                                 onPressed: () {},

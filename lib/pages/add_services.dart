@@ -16,6 +16,7 @@ class newService extends StatefulWidget {
 class _newServiceState extends State<newService> {
   XFile image;
   File pickedImage;
+
   selectImage() async {
     final ImagePicker _picker = ImagePicker();
     // Pick an image
@@ -185,6 +186,7 @@ class _newServiceState extends State<newService> {
                         ),
                         padding: const EdgeInsets.all(10.0),
                         child: TextField(
+                          textAlign: TextAlign.center,
                           controller: txtName,
                           autofocus: true,
                           decoration: InputDecoration(
@@ -224,6 +226,7 @@ class _newServiceState extends State<newService> {
                         ),
                         padding: const EdgeInsets.all(10.0),
                         child: TextField(
+                          textAlign: TextAlign.center,
                           controller: textDescription,
                           autofocus: true,
                           decoration: InputDecoration(
@@ -281,6 +284,8 @@ class _newServiceState extends State<newService> {
                       width: 168.0,
                       height: 48.0,
                       child: TextField(
+                        textAlign: TextAlign.center,
+
                         controller: textQuantity,
                         autofocus: true,
                         decoration: InputDecoration(
@@ -301,6 +306,8 @@ class _newServiceState extends State<newService> {
                       width: 168.0,
                       height: 48.0,
                       child: TextField(
+                        textAlign: TextAlign.center,
+
                         controller: textPrice,
                         autofocus: true,
                         decoration: InputDecoration(
@@ -339,6 +346,8 @@ class _newServiceState extends State<newService> {
                         ),
                         padding: const EdgeInsets.all(10.0),
                         child: TextField(
+                          textAlign: TextAlign.center,
+
                           controller: textDeliveryMethod,
                           autofocus: true,
                           decoration: InputDecoration(
@@ -378,6 +387,8 @@ class _newServiceState extends State<newService> {
                         ),
                         padding: const EdgeInsets.all(10.0),
                         child: TextField(
+                          textAlign: TextAlign.center,
+
                           controller: textDeliveryTime,
                           autofocus: true,
                           decoration: InputDecoration(
@@ -500,10 +511,10 @@ class _newServiceState extends State<newService> {
     );
   }
 
-  // void pickImage() async {
-  //   var image = await ImagePicker.pickImage(source: ImageSource.camera);
-  //   setState(() {
-  //     _image = image
-  //   });
-  // }
+// void pickImage() async {
+//   var image = await ImagePicker.pickImage(source: ImageSource.camera);
+//   setState(() {
+//     _image = image
+//   });
+// }
 }

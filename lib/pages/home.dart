@@ -10,11 +10,16 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+               
           backgroundColor: Colors.white,
           elevation: 0,
           foregroundColor: Colors.blue,
+          
           title: Row(
-            children: [],
+           mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(child: Icon(Icons.notifications,color:Color.fromRGBO(72, 175, 218, 1),size: 25))
+            ],
           ),),
       drawer: myDrawer(),
       bottomNavigationBar: myBottomNavBar(),

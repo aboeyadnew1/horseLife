@@ -4,6 +4,8 @@ import 'package:hourse_life/pages/signin_or_options.dart';
 import 'package:hourse_life/services/static_data.dart';
 
 class SecondIntro extends StatelessWidget {
+  const SecondIntro({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -38,15 +40,21 @@ class SecondIntro extends StatelessWidget {
             Container(
               width:  MediaQuery.of(context).size.width,
               child:  FittedBox(
-                child: Text(
-                  'تم اختيار مقدمين خدمات الخيل من إستشارات طبية ',
-                  style: TextStyle(fontSize: 20),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'تم اختيار مقدمين خدمات الخيل من إستشارات طبية ',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
               ),
             ),
-            Text(
-              'و مواد غذائية للخيل و غيلاه مما يخص الخيل بعناية',
-              style: TextStyle(fontSize: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Text(
+                'و مواد غذائية للخيل و غيلاه مما يخص الخيل بعناية',
+                style: TextStyle(fontSize: 20),
+              ),
             ),
             SizedBox(
               height: 60,
@@ -62,7 +70,7 @@ class SecondIntro extends StatelessWidget {
                   },
                   child: Text(
                     'إبداء ',
-                    style: TextStyle(fontSize: 20.0),
+                    style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w700),
                   ),
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromRGBO(72, 175, 218, 1),

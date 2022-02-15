@@ -9,26 +9,24 @@ class _notificationsPageState extends State<notificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
           child: Center(
         child: Column(children: [
           SizedBox(
-            height: 20.0,
+            height: 40.0,
           ),
           Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
-                  children: [
-                    Icon(Icons.close),
-                  ],
+                  children: [],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       'الاشعارات',
@@ -38,6 +36,10 @@ class _notificationsPageState extends State<notificationsPage> {
                           color: Color.fromRGBO(00, 192, 229, 1),
                           fontWeight: FontWeight.w700),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 90),
+                    //   child: Icon(Icons.close),
+                    // // ),
                   ],
                 ),
               ),
@@ -49,24 +51,36 @@ class _notificationsPageState extends State<notificationsPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Row(
-                      children: [
-                        Icon(Icons.close),
-                      ],
+                      children: [],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Icon(
+                            Icons.circle,
+                            color: Color.fromRGBO(100, 192, 229, 1),
+                          ),
+                        ),
                         Text('طلب جديد على خدمة صيدلية حسام      '),
-                        Icon(
-                          Icons.circle,
-                          color: Color.fromRGBO(100, 192, 229, 1),
+
+                        Padding(
+                          padding: const EdgeInsets.only(right: 90),
+                          child: Icon(Icons.close),
                         ),
                       ],
                     ),
+
                   ),
+                  SizedBox(height: 10.0,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Divider(height: 2.0,color: Colors.black,thickness: 1.0,),
+                  )
                 ],
               ),
             ],

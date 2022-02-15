@@ -6,6 +6,7 @@ import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/home.dart';
 import 'package:hourse_life/pages/provider_new_acc_section_tow.dart';
 import 'package:hourse_life/services/static_data.dart';
+import 'package:search_choices/search_choices.dart';
 
 import 'registration_done.dart';
 
@@ -25,6 +26,11 @@ class _providerNewAccountState extends State<providerNewAccount> {
   var txtJob = TextEditingController();
 
   var firestore = FirebaseFirestore.instance.collection('users');
+  String selectedValue = "الاول";
+
+  final List<DropdownMenuItem> items = [
+    new DropdownMenuItem(child: Text("طبية"))
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +89,10 @@ class _providerNewAccountState extends State<providerNewAccount> {
               ),
 
               //المفروض دروب داون
+              _builddropDown(items, "اختار الخدمة الرئيسية", selectedValue),
+              SizedBox(height: 10.0,),
+              _builddropDown(items, "اختار الخدمة الفرعية", selectedValue),
+
               //inputItem('نوع الخدمة الرئيسية'),
               SizedBox(
                 height: 10.0,
@@ -95,7 +105,7 @@ class _providerNewAccountState extends State<providerNewAccount> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: SizedBox(
-                  width: 354,
+                  width: 320,
                   height: 50,
                   child: TextButton(
                     style: TextButton.styleFrom(
@@ -118,7 +128,6 @@ class _providerNewAccountState extends State<providerNewAccount> {
                                 lat: '0',
                                 long: '0')
                             .toMap());
-   
 
                         var doc = await user.get();
                         setUserId(doc.id);
@@ -129,7 +138,6 @@ class _providerNewAccountState extends State<providerNewAccount> {
                           ),
                         );
                       }
-                     
                     },
                     child: Text(
                       'تسجيل',
@@ -163,6 +171,7 @@ class _providerNewAccountState extends State<providerNewAccount> {
             ),
           ),
           TextField(
+            textAlign: TextAlign.center,
             controller: controller,
             decoration: InputDecoration(
               suffixIcon: isPassword
@@ -182,6 +191,54 @@ class _providerNewAccountState extends State<providerNewAccount> {
           ),
           isPassword ? Text('هل نسيت كلم المرور؟') : Container(),
         ],
+      ),
+    );
+  }
+
+  Widget _builddropDown(
+      List<DropdownMenuItem> items, String hint, String Selected) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),
+          
+            border: Border.all(
+              
+          color: Colors.black38,
+          width: 1,
+        )),
+        child: SearchChoices.single(
+          underline: SizedBox(),
+          items: items,
+          value: Selected,
+          hint: hint,
+          searchHint: "اختار الخدمة الرئيسية",
+          onChanged: (value) {
+            setState(() {
+              var selectedValue = value;
+            });
+          },
+          closeButton: "الغاء",
+          doneButton: "اختيار",
+          displayItem: (item, selected) {
+            return (Row(children: [
+              selected
+                  ? Icon(
+                      Icons.radio_button_checked,
+                      color: Colors.grey,
+                    )
+                  : Icon(
+                      Icons.radio_button_unchecked,
+                      color: Colors.grey,
+                    ),
+              SizedBox(width: 7),
+              Expanded(
+                child: item,
+              ),
+            ]));
+          },
+          isExpanded: true,
+        ),
       ),
     );
   }

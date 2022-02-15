@@ -11,11 +11,11 @@ class _myBottomNavBarState extends State<myBottomNavBar> {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-            icon: Icon(Icons.home), title: Text('الرئيسية')),
+            icon: Icon(Icons.home), label: ('الرئيسية')),
         BottomNavigationBarItem(
-            icon: Icon(Icons.settings), title: Text('الأعدادات')),
+            icon: Icon(Icons.settings), label:('الأعدادات')),
         BottomNavigationBarItem(
-            icon: Icon(Icons.person), title: Text('الملف الشخصى')),
+            icon: Icon(Icons.person), label:('الملف الشخصى')),
       ],
     );
   }

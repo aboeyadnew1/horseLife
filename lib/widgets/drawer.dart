@@ -16,7 +16,7 @@ class _myDrawerState extends State<myDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

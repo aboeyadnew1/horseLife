@@ -52,6 +52,8 @@ dependencies:
   flutter_rating_stars: ^1.0.3+4
   smooth_star_rating: ^1.1.1
   font_awesome_flutter: ^9.2.0
+  cool_stepper: ^1.2.1
+  search_choices: ^2.0.17
 
 
 dev_dependencies:

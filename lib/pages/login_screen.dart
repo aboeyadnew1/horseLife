@@ -38,7 +38,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               Text(
                 "تسجيل دخول",
-                style: TextStyle(
+                style: TextStyle(fontFamily: 'Cairo',
                     fontSize: 25,
                     color: Color.fromRGBO(72, 175, 218, 1),
                     fontWeight: FontWeight.bold),
@@ -48,7 +48,7 @@ class _LogInScreenState extends State<LogInScreen> {
               SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20.0),
                   child: ElevatedButton(
                     onPressed: () async {
                       var data = await firestore
@@ -90,129 +90,152 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                   ),
                 ),
+
               ),
-              SizedBox(height :10.0),
               Column(
                 children: [
-                  Container(
-                    width:367 , height: 45.0,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => providerNewAccount()));
-                      },
-                      child: Text('ليس لديك حساب ! سجل الآن '),
-                      style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(72, 175, 218, 1),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        // fixedSize: Size(370.0, 40.0),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: ElevatedButton(
+                        onPressed: ()  {
+                          Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => providerNewAccount()));
+                        },
+                        child: Text('ليس لديك حساب ! سجل الآن '),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromRGBO(72, 175, 218, 1),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          fixedSize: Size(0, 45),
+                        ),
                       ),
                     ),
+
                   ),
+
+                  // Container(
+                  // width: double.infinity, height: 45.0,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (context) => providerNewAccount()));
+                  //     },
+                  //     child: Text('ليس لديك حساب ! سجل الآن '),
+                  //     style: ElevatedButton.styleFrom(
+                  //       primary: Color.fromRGBO(72, 175, 218, 1),
+                  //       shape: RoundedRectangleBorder(
+                  //           borderRadius: BorderRadius.circular(15)),
+                  //       // fixedSize: Size(370.0, 40.0),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: Divider(
-                      thickness: 2,
-                      color: Colors.black,
-                    )),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text('او'),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 2,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegistrationComplete()));
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('الدخول عن طريق فيسبوك'),
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Image.asset(
-                            'images/facebook.png',
-                            height: 20,
-                            width: 20,
-                          ),
-                        )
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(71, 111, 176, 1),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      fixedSize: Size(0, 45),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'الدخول عن طريق جوجل',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Image.asset(
-                            'images/google.png',
-                            height: 20,
-                            width: 20,
-                          ),
-                        )
-                      ],
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          side: BorderSide(
-                              color: Color.fromRGBO(72, 175, 218, 1))),
-                      fixedSize: Size(0, 45),
-                    ),
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 30),
+              //   child: Row(
+              //     children: [
+              //       Expanded(
+              //           child: Divider(
+              //         thickness: 2,
+              //         color: Colors.black,
+              //       )),
+              //       Padding(
+              //         padding: const EdgeInsets.symmetric(horizontal: 12),
+              //         child: Text('او'),
+              //       ),
+              //       Expanded(
+              //         child: Divider(
+              //           thickness: 2,
+              //           color: Colors.black,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 20),
+              //     child: ElevatedButton(
+              //       onPressed: () {
+              //         Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //                 builder: (context) => RegistrationComplete()));
+              //       },
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Text('الدخول عن طريق فيسبوك'),
+              //           Padding(
+              //             padding: const EdgeInsets.all(12.0),
+              //             child: Image.asset(
+              //               'images/facebook.png',
+              //               height: 20,
+              //               width: 20,
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //       style: ElevatedButton.styleFrom(
+              //         primary: Color.fromRGBO(71, 111, 176, 1),
+              //         shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(15)),
+              //         fixedSize: Size(0, 45),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 20),
+              //     child: ElevatedButton(
+              //       onPressed: () {
+              //         Navigator.push(context,
+              //             MaterialPageRoute(builder: (context) => Home()));
+              //       },
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Text(
+              //             'الدخول عن طريق جوجل',
+              //             style: TextStyle(color: Colors.black),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.symmetric(horizontal: 20),
+              //             child: Image.asset(
+              //               'images/google.png',
+              //               height: 20,
+              //               width: 20,
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //       style: ElevatedButton.styleFrom(
+              //         primary: Colors.white,
+              //         shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(15),
+              //             side: BorderSide(
+              //                 color: Color.fromRGBO(72, 175, 218, 1))),
+              //         fixedSize: Size(0, 45),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -232,6 +255,7 @@ class _LogInScreenState extends State<LogInScreen> {
             child: Text(text),
           ),
           TextField(
+            textAlign: TextAlign.center,
             controller: txtControl,
             decoration: InputDecoration(
               suffixIcon: isPassword

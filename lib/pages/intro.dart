@@ -52,9 +52,9 @@ class Intro extends StatelessWidget {
                 ),
               ),
             ),
-      
+
             SizedBox(
-              height: 80,
+              height: 40,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -64,7 +64,7 @@ class Intro extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SecondIntro()));
                   },
-                  child: Text('التالى '),
+                  child: Text('التالى ',style: TextStyle(fontFamily: 'Cairo',fontSize: 20.0,fontWeight: FontWeight.w400),),
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromRGBO(72, 175, 218, 1),
                     shape: RoundedRectangleBorder(
@@ -72,19 +72,22 @@ class Intro extends StatelessWidget {
                     fixedSize: Size(170, 50),
                   ),
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      size: 15,
-                      color: Color.fromRGBO(72, 175, 218, 1),
-                    ),
-                    Icon(
-                      Icons.circle,
-                      size: 15,
-                      color: Color.fromRGBO(72, 175, 218, 0.4),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        size: 15,
+                        color: Color.fromRGBO(72, 175, 218, 1),
+                      ),
+                      Icon(
+                        Icons.circle,
+                        size: 15,
+                        color: Color.fromRGBO(72, 175, 218, 0.4),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             )
