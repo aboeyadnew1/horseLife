@@ -54,7 +54,11 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   cool_stepper: ^1.2.1
   search_choices: ^2.0.17
-
+  timelines: ^0.1.0
+  modal_bottom_sheet: ^2.0.0
+  lottie: ^1.2.2
+  flutter_svg: ^1.0.3
+  firebase_storage: ^10.2.9
 
 dev_dependencies:
   flutter_test:

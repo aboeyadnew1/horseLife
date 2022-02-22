@@ -2,17 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hourse_life/pages/edit_purchas_order.dart';
 import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/pages/profile_screen.dart';
 import 'package:hourse_life/services/static_data.dart';
 import 'data/global_data.dart';
 import 'models/user.dart';
-import 'pages/add_services.dart';
 import 'pages/intro.dart';
 import 'pages/login_screen.dart';
-import 'pages/notifications.dart';
-import 'pages/provider_new_account.dart';
 import 'pages/registration_done.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
       locale: Locale("ar", "AE"),
       debugShowCheckedModeBanner: false,
       title: "حياة الخيل",
-      home: Page(), //providerNewAccount(),
+      home: Intro(), //providerNewAccount(),
     );
   }
 }

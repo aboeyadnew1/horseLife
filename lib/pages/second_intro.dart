@@ -57,7 +57,7 @@ class SecondIntro extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 60,
+              height: 100,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -54,7 +54,7 @@ class Intro extends StatelessWidget {
             ),
 
             SizedBox(
-              height: 40,
+              height: 100,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

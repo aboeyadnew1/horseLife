@@ -2,11 +2,10 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
-import 'package:hourse_life/data/mock_data.dart';
 import 'package:hourse_life/models/service.dart';
-import 'package:hourse_life/pages/service_provider_dashboard.dart';
 import 'package:image_picker/image_picker.dart';
 import 'provider_home_page.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class newService extends StatefulWidget {
   @override
@@ -285,7 +284,6 @@ class _newServiceState extends State<newService> {
                       height: 48.0,
                       child: TextField(
                         textAlign: TextAlign.center,
-
                         controller: textQuantity,
                         autofocus: true,
                         decoration: InputDecoration(
@@ -307,7 +305,6 @@ class _newServiceState extends State<newService> {
                       height: 48.0,
                       child: TextField(
                         textAlign: TextAlign.center,
-
                         controller: textPrice,
                         autofocus: true,
                         decoration: InputDecoration(
@@ -347,7 +344,6 @@ class _newServiceState extends State<newService> {
                         padding: const EdgeInsets.all(10.0),
                         child: TextField(
                           textAlign: TextAlign.center,
-
                           controller: textDeliveryMethod,
                           autofocus: true,
                           decoration: InputDecoration(
@@ -388,7 +384,6 @@ class _newServiceState extends State<newService> {
                         padding: const EdgeInsets.all(10.0),
                         child: TextField(
                           textAlign: TextAlign.center,
-
                           controller: textDeliveryTime,
                           autofocus: true,
                           decoration: InputDecoration(
@@ -448,6 +443,8 @@ class _newServiceState extends State<newService> {
                               ),
                             ),
                           ),
+                          ElevatedButton(
+                              onPressed: () {}, child: Text('رفع الصورة'))
                         ],
                       ),
                     ],

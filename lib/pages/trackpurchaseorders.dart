@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hourse_life/pages/edit_purchas_order.dart';
 
 class trackPurchaseOrders extends StatefulWidget {
   @override
@@ -212,7 +213,13 @@ class _trackPurchaseOrdersState extends State<trackPurchaseOrders> {
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.w400),
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (builder) => EditPurchaseOrders()));
+
+
+                                    },
                                     style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all(

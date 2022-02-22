@@ -1,10 +1,8 @@
 // ignore_for_file: unused_import, camel_case_types, use_key_in_widget_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/home.dart';
-import 'package:hourse_life/pages/provider_new_acc_section_tow.dart';
 import 'package:hourse_life/services/static_data.dart';
 import 'package:search_choices/search_choices.dart';
 
