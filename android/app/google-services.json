@@ -7,9 +7,67 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1046652315048:android:c65b6800d6afdb0bfe299d",
+        "mobilesdk_app_id": "1:1046652315048:android:e7c6998e3e7c71a8fe299d",
         "android_client_info": {
-          "package_name": "com.example.hourse_life"
+          "package_name": "com.raeda.admin_life_horse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDggiCiX10A5nsdDeVuoq44rHaJ0dPoTAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046652315048:android:c4b764468ff0df8afe299d",
+        "android_client_info": {
+          "package_name": "com.raeda.horsecustomers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDggiCiX10A5nsdDeVuoq44rHaJ0dPoTAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046652315048-3qqc313n4176isvcur5nosheiaj55p6g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046652315048:android:613c5abdf4a5a4eefe299d",
+        "android_client_info": {
+          "package_name": "com.raeda.hourse_life"
         }
       },
       "oauth_client": [
