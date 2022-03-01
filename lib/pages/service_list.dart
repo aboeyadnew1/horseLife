@@ -12,25 +12,7 @@ class _ServiceListState extends State<ServiceList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<QuerySnapshot<Map<String,dynamic>>>(
-        future: collection.get(),
-        builder: (ctx, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return ListView.builder(
-                itemCount: snapshot.data.size,
-                itemBuilder: (ctx, index) {
-                  return ListTile(
-                    title: Text(snapshot.data.docs[index]['service_name']),
-                    onTap: (){
-                      // collection.doc(snapshot.data.docs[index].id).delete();
-                    },
-                  );
-                });
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    );
+      body: Center(child: CircularProgressIndicator()));
+
   }
 }

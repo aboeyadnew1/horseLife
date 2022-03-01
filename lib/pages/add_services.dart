@@ -7,9 +7,12 @@ import 'package:hourse_life/models/SubService.dart';
 import 'package:hourse_life/models/service.dart';
 import 'package:hourse_life/services/Store.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 import 'provider_home_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class newService extends StatefulWidget {
   @override
@@ -17,17 +20,9 @@ class newService extends StatefulWidget {
 }
 
 class _newServiceState extends State<newService> {
-  XFile image;
-  File pickedImage;
-
-  selectImage() async {
-    final ImagePicker _picker = ImagePicker();
-    // Pick an image
-    image = await _picker.pickImage(source: ImageSource.camera);
-    setState(() {
-      pickedImage = File(image.path);
-    });
-  }
+  File _image;
+  String _uploadedFileURL;
+  String now_date;
 
   var txtName = TextEditingController();
   var textDescription = TextEditingController();
@@ -55,6 +50,9 @@ class _newServiceState extends State<newService> {
 
   @override
   Widget build(BuildContext context) {
+    final ProgressDialog pr = ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
+
     return Scaffold(
         body: StreamBuilder<QuerySnapshot>(
             stream: _store.loadMainServices(),
@@ -484,14 +482,14 @@ class _newServiceState extends State<newService> {
                                                 padding:
                                                     const EdgeInsets.all(10.0),
                                                 child: InkWell(
-                                                  child: pickedImage == null
+                                                  child: _image == null
                                                       ? Icon(
                                                           Icons.add_a_photo,
                                                           size: 50.0,
                                                         )
-                                                      : Image.file(pickedImage),
+                                                      : Image.file(_image),
                                                   onTap: () {
-                                                    selectImage();
+                                                    chooseFile(context);
                                                   },
                                                 ),
                                               ),
@@ -519,6 +517,12 @@ class _newServiceState extends State<newService> {
                                         quantity: textQuantity.text,
                                         deliveryMethod: textDeliveryMethod.text,
                                         deliveryTime: textDeliveryTime.text,
+                                        price: textPrice.text,
+                                        image: _uploadedFileURL,
+                                        mainServiceType: getmainid(
+                                            selectedmainValue, mainservices),
+                                        subServiceType: getsubid(
+                                            selectedsubValue, subservices),
                                       );
                                       var service = await firestore
                                           .add(serviceModel.toMap());
@@ -609,12 +613,56 @@ class _newServiceState extends State<newService> {
       }
     }
   }
+
+  Future chooseFile(context) async {
+    final ProgressDialog pr = ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
+
+    if (await Permission.storage.request().isGranted) {
+      // Either the permission was already granted before or the user just granted it.
+    }
+
+// You can request multiple permissions at once.
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.location,
+      Permission.storage,
+    ].request();
+    //print(statuses[Permission.location]);
+
+    ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
+      pr.show();
+      setState(() {
+        _image = image;
+      });
+      DateTime now = DateTime.now();
+      now_date = now.year.toString() +
+          "\-" +
+          now.month.toString() +
+          "\-" +
+          now.day.toString() +
+          "\-" +
+          now.hour.toString() +
+          "\-" +
+          now.minute.toString() +
+          "\-" +
+          now.second.toString();
+      firebase_storage.Reference storageReference =
+          FirebaseStorage.instance.ref().child(now_date);
+      firebase_storage.UploadTask uploadTask = storageReference.putFile(_image);
+      uploadTask.whenComplete(() {
+        pr.hide();
+        print('File Uploaded');
+        storageReference.getDownloadURL().then((fileURL) {
+          setState(() {
+            _uploadedFileURL = fileURL;
+          });
+        });
+      }).onError((error, stackTrace) {
+        pr.hide();
+      });
+    });
+  }
 }
-
-
-
-
-
 
 // void pickImage() async {
 //   var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -622,4 +670,3 @@ class _newServiceState extends State<newService> {
 //     _image = image
 //   });
 // }
-

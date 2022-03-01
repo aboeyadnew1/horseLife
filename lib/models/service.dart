@@ -1,14 +1,4 @@
 class Service {
-  Service(
-      {this.mainServiceType,
-      this.subServiceType,
-      this.name,
-      this.description,
-      this.quantity,
-      this.price,
-      this.deliveryMethod,
-      this.deliveryTime});
-
   String mainServiceType;
   String subServiceType;
   String name;
@@ -17,6 +7,19 @@ class Service {
   String price;
   String deliveryMethod;
   String deliveryTime;
+  String image;
+  Service(
+      {this.mainServiceType,
+      this.subServiceType,
+      this.name,
+      this.description,
+      this.quantity,
+      this.price,
+      this.deliveryMethod,
+      this.image,
+      this.deliveryTime});
+
+
 
   Map<String, dynamic> toMap() {
     return {
@@ -26,6 +29,7 @@ class Service {
       'description': this.description,
       'quantity': this.quantity,
       'price': this.price,
+      'image': this.image,
       'deliveryMethod': this.deliveryMethod,
       'deliveryTime': this.deliveryTime,
     };
