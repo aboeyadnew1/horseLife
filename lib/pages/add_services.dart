@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:hourse_life/models/MainService.dart';
 import 'package:hourse_life/models/SubService.dart';
 import 'package:hourse_life/models/service.dart';
@@ -123,21 +122,23 @@ class _newServiceState extends State<newService> {
                                                   72, 175, 218, 1),
                                             ),
                                           ),
-                                          Icon(
-                                            Icons.arrow_back_ios_new,
-                                            color:
-                                                Color.fromRGBO(72, 175, 218, 1),
-                                          ),
+                                          // Icon(
+                                          //   Icons.arrow_back_ios_new,
+                                          //   color:
+                                          //       Color.fromRGBO(72, 175, 218, 1),
+                                          // ),
+
                                         ],
                                       ),
                                     ],
                                   ),
                                 ),
+
                                 SizedBox(
                                   height: 20.0,
                                 ),
+
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -189,7 +190,7 @@ class _newServiceState extends State<newService> {
                                   ],
                                 ),
                                 SizedBox(
-                                  height: 20.0,
+                                  height: 10.0,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,28 +199,31 @@ class _newServiceState extends State<newService> {
                                       'عنوان الخدمة',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
-                                          fontSize: 20.0,
+                                          fontSize: 15.0,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.w400),
                                     ),
-                                    SizedBox(
-                                      width: 354,
-                                      height: 48.0,
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
+                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Color.fromRGBO(
-                                                  72, 175, 218, 1),
-                                              width: 2),
+                                                  128, 128, 128, 0.5),
+                                              width: 1),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
                                         padding: const EdgeInsets.all(10.0),
                                         child: TextField(
-                                          textAlign: TextAlign.center,
+                                          // textAlign: TextAlign.center,
                                           controller: txtName,
                                           autofocus: true,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.fromLTRB(
+                                                15.0, 10.0, 0.0, 15),
                                             border: InputBorder.none,
                                             focusedBorder: InputBorder.none,
                                             enabledBorder: InputBorder.none,
@@ -231,9 +235,9 @@ class _newServiceState extends State<newService> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
+                                // SizedBox(
+                                //   height: 10.0,
+                                // ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -241,28 +245,31 @@ class _newServiceState extends State<newService> {
                                       'نبذة عن الخدمة',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
-                                          fontSize: 20.0,
+                                          fontSize: 15.0,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.w400),
                                     ),
-                                    SizedBox(
-                                      width: 354,
-                                      height: 80.0,
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
                                       child: Container(
+                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Color.fromRGBO(
-                                                  72, 175, 218, 1),
-                                              width: 2),
+                                                  128, 128, 128, 0.5),
+                                              width: 1),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        padding: const EdgeInsets.all(10.0),
+                                        padding: const EdgeInsets.all(5.0),
                                         child: TextField(
-                                          textAlign: TextAlign.center,
+                                          // textAlign: TextAlign.center,
                                           controller: textDescription,
                                           autofocus: true,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.fromLTRB(
+                                                15.0, 15.0, 5, 15),
                                             border: InputBorder.none,
                                             focusedBorder: InputBorder.none,
                                             enabledBorder: InputBorder.none,
@@ -274,9 +281,9 @@ class _newServiceState extends State<newService> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
+                                // SizedBox(
+                                //   height: 20.0,
+                                // ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -287,7 +294,7 @@ class _newServiceState extends State<newService> {
                                       child: Text(
                                         'الكمية',
                                         style: TextStyle(
-                                            fontSize: 20.0,
+                                            fontSize: 15.0,
                                             fontFamily: 'Cairo',
                                             fontWeight: FontWeight.w400),
                                       ),
@@ -297,32 +304,34 @@ class _newServiceState extends State<newService> {
                                       child: Text(
                                         'السعر',
                                         style: TextStyle(
-                                            fontSize: 20.0,
+                                            fontSize: 15.0,
                                             fontFamily: 'Cairo',
                                             fontWeight: FontWeight.w400),
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 10.0,
-                                ),
+                                // SizedBox(
+                                //   height: 5.0,
+                                // ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color:
-                                                Color.fromRGBO(72, 175, 218, 1),
-                                            width: 2),
+                                            color: Color.fromRGBO(
+                                                128, 128, 128, 0.5),
+                                            width: 1),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      width: 168.0,
-                                      height: 48.0,
+                                      padding: const EdgeInsets.all(10.0),
+                                      width: 150.0,
+                                      height: 50.0,
                                       child: TextField(
-                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        // textAlign: TextAlign.center,
                                         controller: textQuantity,
                                         autofocus: true,
                                         decoration: InputDecoration(
@@ -337,15 +346,17 @@ class _newServiceState extends State<newService> {
                                     Container(
                                       decoration: BoxDecoration(
                                         border: Border.all(
-                                            color:
-                                                Color.fromRGBO(72, 175, 218, 1),
-                                            width: 2),
+                                            color: Color.fromRGBO(
+                                                128, 128, 128, 0.5),
+                                            width: 1),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      width: 168.0,
+                                      padding: const EdgeInsets.all(10.0),
+                                      width: 150.0,
                                       height: 48.0,
                                       child: TextField(
-                                        textAlign: TextAlign.center,
+                                        keyboardType: TextInputType.number,
+                                        // textAlign: TextAlign.center,
                                         controller: textPrice,
                                         autofocus: true,
                                         decoration: InputDecoration(
@@ -359,9 +370,9 @@ class _newServiceState extends State<newService> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
+                                // SizedBox(
+                                //   height: 20.0,
+                                // ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -369,19 +380,19 @@ class _newServiceState extends State<newService> {
                                       'طريقة التسليم',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
-                                          fontSize: 20.0,
+                                          fontSize: 15.0,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.w400),
                                     ),
                                     SizedBox(
-                                      width: 354,
+                                      width: 320,
                                       height: 48.0,
                                       child: Container(
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Color.fromRGBO(
-                                                  72, 175, 218, 1),
-                                              width: 2),
+                                                  128, 128, 128, 0.5),
+                                              width: 1),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
@@ -402,9 +413,9 @@ class _newServiceState extends State<newService> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
+                                // SizedBox(
+                                //   height: 20.0,
+                                // ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -412,19 +423,19 @@ class _newServiceState extends State<newService> {
                                       'مدة التسليم',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
-                                          fontSize: 20.0,
+                                          fontSize: 15.0,
                                           fontFamily: 'Cairo',
                                           fontWeight: FontWeight.w400),
                                     ),
                                     SizedBox(
-                                      width: 354,
+                                      width: 320,
                                       height: 48.0,
                                       child: Container(
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                               color: Color.fromRGBO(
-                                                  72, 175, 218, 1),
-                                              width: 2),
+                                                  128, 128, 128, 0.5),
+                                              width: 1),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
@@ -445,9 +456,9 @@ class _newServiceState extends State<newService> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
+                                // SizedBox(
+                                //   height: 20.0,
+                                // ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 20.0),
                                   child: Row(
@@ -460,51 +471,44 @@ class _newServiceState extends State<newService> {
                                             'إضافة صورة للمنتج',
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                                fontSize: 20.0,
+                                                fontSize: 15.0,
                                                 fontFamily: 'Cairo',
                                                 fontWeight: FontWeight.w400),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 175.0),
-                                            child: SizedBox(
-                                              width: 150.0,
-                                              height: 122.0,
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Color.fromRGBO(
-                                                          72, 175, 218, 1),
-                                                      width: 2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
-                                                child: InkWell(
-                                                  child: _image == null
-                                                      ? Icon(
-                                                          Icons.add_a_photo,
-                                                          size: 50.0,
-                                                        )
-                                                      : Image.file(_image),
-                                                  onTap: () {
-                                                    chooseFile(context);
-                                                  },
-                                                ),
+                                          SizedBox(
+                                            width: 100.0,
+                                            height: 100.0,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Color.fromRGBO(
+                                                        72, 175, 218, 1),
+                                                    width: 2),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: InkWell(
+                                                child: _image == null
+                                                    ? Icon(
+                                                        Icons.add_a_photo,
+                                                        size: 30.0,
+                                                      )
+                                                    : Image.file(_image),
+                                                onTap: () {
+                                                  chooseFile(context);
+                                                },
                                               ),
                                             ),
                                           ),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              child: Text('رفع الصورة'))
                                         ],
                                       ),
                                     ],
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 35.0,
+                                  height: 20.0,
                                 ),
                                 SizedBox(
                                   width: 281,
@@ -523,6 +527,7 @@ class _newServiceState extends State<newService> {
                                             selectedmainValue, mainservices),
                                         subServiceType: getsubid(
                                             selectedsubValue, subservices),
+                                          rate: 0
                                       );
                                       var service = await firestore
                                           .add(serviceModel.toMap());

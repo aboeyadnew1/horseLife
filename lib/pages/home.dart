@@ -22,7 +22,6 @@ class Home extends StatelessWidget {
             ],
           ),),
       drawer: myDrawer(),
-      bottomNavigationBar: myBottomNavBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
