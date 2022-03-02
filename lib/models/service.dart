@@ -9,6 +9,7 @@ class Service {
   String deliveryTime;
   String image;
   double rate;
+  String vendor_id;
 
   Service(
       {this.mainServiceType,
@@ -20,7 +21,8 @@ class Service {
       this.deliveryMethod,
       this.deliveryTime,
       this.image,
-      this.rate});
+      this.rate,
+      this.vendor_id});
 
   Map<String, dynamic> toMap() {
     return {
@@ -33,7 +35,8 @@ class Service {
       'image': this.image,
       'deliveryMethod': this.deliveryMethod,
       'deliveryTime': this.deliveryTime,
-       'rate' : this.rate
+      'rate': this.rate,
+      'vendor_id': this.vendor_id,
     };
   }
 }

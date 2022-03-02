@@ -1,16 +1,5 @@
 class User {
-  User(
-      {
-      this.name,
-      this.phone,
-      this.email,
-      this.password,
-      this.recordNumber,
-      this.personalIdentity,
-      this.address,
-      this.job,
-      this.lat,
-      this.long});
+
 
   String name;
   String phone;
@@ -26,6 +15,18 @@ class User {
   String subServiceType;
   bool approved = false;
   bool visable = true;
+  User(
+      {
+        this.name,
+        this.phone,
+        this.email,
+        this.password,
+        this.recordNumber,
+        this.personalIdentity,
+        this.address,
+        this.job,
+        this.lat,
+        this.long});
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {

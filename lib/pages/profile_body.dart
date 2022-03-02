@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:hourse_life/componant/profile_pic.dart';
 import 'package:hourse_life/componant/profilemenu.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'edit_profile_data_screen.dart';
 

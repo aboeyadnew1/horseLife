@@ -127,7 +127,6 @@ class _newServiceState extends State<newService> {
                                           //   color:
                                           //       Color.fromRGBO(72, 175, 218, 1),
                                           // ),
-
                                         ],
                                       ),
                                     ],
@@ -527,7 +526,7 @@ class _newServiceState extends State<newService> {
                                             selectedmainValue, mainservices),
                                         subServiceType: getsubid(
                                             selectedsubValue, subservices),
-                                          rate: 0
+                                        rate: 0,
                                       );
                                       var service = await firestore
                                           .add(serviceModel.toMap());

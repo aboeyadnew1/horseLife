@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hourse_life/old_complaints.dart';
+import 'package:hourse_life/pages/home.dart';
 
 class Complaints extends StatelessWidget {
   @override
@@ -21,7 +23,7 @@ class Complaints extends StatelessWidget {
           ),
         ),
         title: new Text(
-          'الشكــــاوى',
+          'الشكــــاوى و المقترحـــات',
           style: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.w400,
@@ -34,13 +36,57 @@ class Complaints extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 30.0,
+              ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15.0, vertical: 20.0),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Text(
+                  "عنوان الشكوى",
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      fontFamily: 'Cairo',
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                width: 354,
+                height: 48.0,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Color.fromRGBO(72, 175, 218, 1), width: 2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    padding: const EdgeInsets.only(top: 10.0, right: 5.0),
+                    child: TextField(
+                      maxLines: 1,
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        hintText: 'قم بكتابة عنوان الشكوى',
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Container(
                   height: 150,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 2),
+                    border: Border.all(
+                        color: Color.fromRGBO(220, 220, 220, 1), width: 2),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Padding(
@@ -63,97 +109,8 @@ class Complaints extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Divider(
-                  color: Colors.black,
-                  thickness: 2.0,
-                ),
-              ),
               SizedBox(
-                height: 30.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  "اسم العميل",
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      fontFamily: 'Cairo',
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-              SizedBox(
-                width: 354,
-                height: 48.0,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Color.fromRGBO(72, 175, 218, 1), width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextField(
-                      textAlign: TextAlign.center,
-                      autofocus: true,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                        enabledBorder: InputBorder.none,
-                        errorBorder: InputBorder.none,
-                        disabledBorder: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text(
-                      "رقم العميل",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 354,
-                    height: 48.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Color.fromRGBO(72, 175, 218, 1), width: 2),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: const EdgeInsets.all(10.0),
-                        child: TextField(
-                          textAlign: TextAlign.center,
-                          autofocus: true,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            errorBorder: InputBorder.none,
-                            disabledBorder: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 15.0,
+                height: 20.0,
               ),
               InkWell(
                 child: Padding(
@@ -168,7 +125,10 @@ class Complaints extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => OldComplaints()));
+                },
               ),
               SizedBox(
                 height: 50.0,
@@ -179,10 +139,8 @@ class Complaints extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => providerNewAccount()));
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (builder) => Home()));
                     },
                     child: Text('أرسل'),
                     style: ElevatedButton.styleFrom(
