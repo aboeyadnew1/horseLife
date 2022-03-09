@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hourse_life/pages/complaints%20_page.dart';
 import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/pages/profile_screen.dart';
+import 'package:hourse_life/pages/purchaseorders.dart';
 import 'package:hourse_life/pages/trackpurchaseorders.dart';
 import 'package:hourse_life/pages/user_control_panel.dart';
 import 'package:hourse_life/services/static_data.dart';
@@ -84,7 +85,7 @@ class _myDrawerState extends State<myDrawer> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => trackPurchaseOrders()));
+                        builder: (context) => PurchaseOrders()));
               },
             ),
             // SizedBox(

@@ -244,33 +244,43 @@ class _UserControlPanelState extends State<UserControlPanel> {
             ),
             SizedBox(height: 25.0),
             InkWell(
-              onTap: () {
-                removeUserId();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LogInScreen()),
-                    (route) => false);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.login_outlined,
-                    color: Color.fromRGBO(72, 175, 218, 1),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'تسجيل الخروج',
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            )
+                onTap: () {
+                  removeUserId();
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LogInScreen()),
+                      (route) => false);
+                },
+                child: InkWell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.login_outlined,
+                          color: Color.fromRGBO(72, 175, 218, 1),
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          'تسجيل الخروج',
+                          style: TextStyle(
+                              fontSize: 16.0,
+                              fontFamily: 'Cairo',
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      {
+                        removeUserId();
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LogInScreen()),
+                            (route) => false);
+                      }
+                    }))
           ],
         ),
       ),

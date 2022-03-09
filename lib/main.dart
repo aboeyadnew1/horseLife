@@ -2,15 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hourse_life/pages/edit_purchas_order.dart';
 import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/provider/UserProvider.dart';
 import 'package:hourse_life/services/static_data.dart';
+import 'package:provider/provider.dart';
 import 'data/global_data.dart';
 import 'models/user.dart';
-import 'pages/complaints _page.dart';
 import 'pages/intro.dart';
 import 'pages/login_screen.dart';
 import 'pages/registration_done.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -20,6 +21,28 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    return MultiProvider(
+        providers: [
+
+         ChangeNotifierProvider<UserProvider>(
+            create: (context) => UserProvider(),
+          ),
+        ],
+        child: MaterialApp(
+            theme: ThemeData(
+              fontFamily: 'Cairo',
+              primaryColor: Color.fromRGBO(72, 175, 218, 1),
+              primarySwatch: Colors.lightBlue,
+            ),
+            themeMode: ThemeMode.light,
+            initialRoute: LogInScreen.id,
+            debugShowCheckedModeBanner: false,
+            routes: {
+
+              LogInScreen.id: (context) => LogInScreen(),
+
+            }));
     return MaterialApp(
       localizationsDelegates: [
         GlobalCupertinoLocalizations.delegate,

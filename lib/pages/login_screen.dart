@@ -10,6 +10,7 @@ import 'package:hourse_life/services/api_provider.dart';
 import 'package:hourse_life/services/static_data.dart';
 
 class LogInScreen extends StatefulWidget {
+  static String id = 'login';
   @override
   _LogInScreenState createState() => _LogInScreenState();
 }

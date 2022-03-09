@@ -1,6 +1,6 @@
 class User {
 
-
+  String id;
   String name;
   String phone;
   String email;
@@ -17,6 +17,7 @@ class User {
   bool visable = true;
   User(
       {
+        this.id,
         this.name,
         this.phone,
         this.email,
