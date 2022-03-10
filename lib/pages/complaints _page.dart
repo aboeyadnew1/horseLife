@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_life/old_complaints.dart';
-import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/pages/home_page/home.dart';
 
 class Complaints extends StatelessWidget {
   @override

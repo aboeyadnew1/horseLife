@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_life/pages/complaints%20_page.dart';
 import 'package:hourse_life/pages/login_screen.dart';
-import 'package:hourse_life/pages/profile_screen.dart';
-import 'package:hourse_life/pages/purchaseorders.dart';
-import 'package:hourse_life/pages/trackpurchaseorders.dart';
-import 'package:hourse_life/pages/user_control_panel.dart';
+import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
+import 'package:hourse_life/pages/profile/profile_screen.dart';
+import 'package:hourse_life/pages/profile/user_control_panel.dart';
 import 'package:hourse_life/services/static_data.dart';
+
 class myDrawer extends StatefulWidget {
   @override
   _myDrawerState createState() => _myDrawerState();
 }
+
 class _myDrawerState extends State<myDrawer> {
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,12 @@ class _myDrawerState extends State<myDrawer> {
             SizedBox(
               height: 20.0,
             ),
+            SizedBox(height: 30.0),
+            Divider(
+              height: 1.0,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 30.0),
             Column(children: [
               InkWell(
                 child: Row(
@@ -48,12 +55,12 @@ class _myDrawerState extends State<myDrawer> {
                     ),
                   ],
                 ),
-                onTap: (){
-              Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => UserControlPanel()));
-              },
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserControlPanel()));
+                },
               ),
             ]),
             SizedBox(
@@ -82,38 +89,22 @@ class _myDrawerState extends State<myDrawer> {
                 ],
               ),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PurchaseOrders()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PurchaseOrders()));
               },
             ),
-            // SizedBox(
-            //   height: 30.0,
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.start,
-            //   children: [
-            //     Icon(
-            //       Icons.shopping_bag,
-            //       color: Color.fromRGBO(72, 175, 218, 1),
-            //     ),
-            //     Text(
-            //       'المنتجات',
-            //       style: TextStyle(
-            //           fontSize: 16.0,
-            //           fontFamily: 'Cairo',
-            //           fontWeight: FontWeight.w400),
-            //     ),
-            //   ],
-            // ),
+            SizedBox(height: 30.0),
+            Divider(
+              height: 1.0,
+              color: Colors.blue,
+            ),
             SizedBox(height: 30.0),
             InkWell(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => trackPurchaseOrders(),
+                    builder: (context) => PurchaseOrders(),
                   ),
                 );
               },
@@ -144,9 +135,12 @@ class _myDrawerState extends State<myDrawer> {
                 },
               ),
             ),
-            SizedBox(
-              height: 30.0,
+            SizedBox(height: 30.0),
+            Divider(
+              height: 1.0,
+              color: Colors.blue,
             ),
+            SizedBox(height: 30.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -163,51 +157,12 @@ class _myDrawerState extends State<myDrawer> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 30.0,
+            SizedBox(height: 30.0),
+            Divider(
+              height: 1.0,
+              color: Colors.blue,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.settings,
-                  color: Color.fromRGBO(72, 175, 218, 1),
-                ),
-                Text(
-                  'الضبط',
-                  style: TextStyle(
-                      fontSize: 16.0,
-                      fontFamily: 'Cairo',
-                      fontWeight: FontWeight.w400),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            InkWell(
-              onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (builder) => ProfileScreen())),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.person_pin,
-                    color: Color.fromRGBO(72, 175, 218, 1),
-                  ),
-                  Text(
-                    'الملف الشخصي',
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
+            SizedBox(height: 30.0),
             InkWell(
               onTap: () {
                 removeUserId();
@@ -232,7 +187,13 @@ class _myDrawerState extends State<myDrawer> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 30.0),
+            Divider(
+              height: 1.0,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 30.0),
           ],
         ),
       ),

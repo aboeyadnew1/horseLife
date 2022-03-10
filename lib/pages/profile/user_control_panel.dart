@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/login_screen.dart';
+import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
 import 'package:hourse_life/pages/products_page.dart';
-import 'package:hourse_life/pages/profile_screen.dart';
-import 'package:hourse_life/pages/trackpurchaseorders.dart';
+import 'package:hourse_life/pages/profile/profile_screen.dart';
 
-import '../services/static_data.dart';
-import 'complaints _page.dart';
+import '../../services/static_data.dart';
+import '../complaints _page.dart';
 
 class UserControlPanel extends StatefulWidget {
   const UserControlPanel({Key key}) : super(key: key);
@@ -61,34 +61,34 @@ class _UserControlPanelState extends State<UserControlPanel> {
             SizedBox(
               height: 20.0,
             ),
-            Column(children: [
-              Row(
-                children: [
-                  Image.asset(
-                    'images/servicesicon.png',
-                    width: 25,
-                    height: 25,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    'الخدمات المقدمة',
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontFamily: 'Cairo',
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
-            ]),
-            SizedBox(
-              height: 30.0,
-            ),
-            Divider(
-              height: 1.0,
-              color: Colors.blue,
-            ),
+            // Column(children: [
+            //   Row(
+            //     children: [
+            //       Image.asset(
+            //         'images/servicesicon.png',
+            //         width: 25,
+            //         height: 25,
+            //       ),
+            //       SizedBox(
+            //         width: 10.0,
+            //       ),
+            //       Text(
+            //         'الخدمات المقدمة',
+            //         style: TextStyle(
+            //             fontSize: 16.0,
+            //             fontFamily: 'Cairo',
+            //             fontWeight: FontWeight.w400),
+            //       ),
+            //     ],
+            //   ),
+            // ]),
+            // SizedBox(
+            //   height: 30.0,
+            // ),
+            // Divider(
+            //   height: 1.0,
+            //   color: Colors.blue,
+            // ),
             SizedBox(
               height: 30.0,
             ),
@@ -148,7 +148,7 @@ class _UserControlPanelState extends State<UserControlPanel> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => trackPurchaseOrders()));
+                        builder: (context) => PurchaseOrders()));
               },
             ),
             SizedBox(
@@ -200,7 +200,7 @@ class _UserControlPanelState extends State<UserControlPanel> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => trackPurchaseOrders(),
+                    builder: (context) => PurchaseOrders(),
                   ),
                 );
               },

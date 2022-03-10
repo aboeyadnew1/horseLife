@@ -8,7 +8,7 @@ import 'package:hourse_life/services/Store.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-import 'provider_home_page.dart';
+import 'home_page/provider_home_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;

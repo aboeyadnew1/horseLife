@@ -4,7 +4,7 @@ import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/Order.dart';
 import 'package:hourse_life/models/service.dart';
 import 'package:hourse_life/models/time_line_model.dart';
-import 'package:hourse_life/pages/purchaseordersdetails.dart';
+import 'package:hourse_life/pages/orders_pages/purchaseordersdetails.dart';
 import 'package:hourse_life/provider/UserProvider.dart';
 import 'package:hourse_life/services/Store.dart';
 import 'package:hourse_life/widgets/App_Bar.dart';
@@ -14,9 +14,11 @@ import 'package:timelines/timelines.dart';
 
 class PurchaseOrders extends StatefulWidget {
   static String id = "PurchaseOrders";
+
   @override
   _PurchaseOrdersState createState() => _PurchaseOrdersState();
 }
+
 class _PurchaseOrdersState extends State<PurchaseOrders> {
   TextEditingController search_con = TextEditingController();
   int index = 0;
@@ -61,14 +63,12 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
                 );
 
                 orders.add(order);
-
-
-                }
-                // if (doc.get("user_id") == userpro.user.id) {
-                //
-                // }
-
               }
+              // if (doc.get("user_id") == userpro.user.id) {
+              //
+              // }
+
+            }
             return SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -235,7 +235,8 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
                                               ),
                                               Text(
                                                 'اسم العميل : ' +
-                                                    orders2[index].user_id
+                                                    orders2[index]
+                                                        .user_id
                                                         .toString(),
                                                 style: TextStyle(
                                                   fontSize: 16.0,
@@ -394,142 +395,9 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
                                           SizedBox(
                                             width: 10,
                                           ),
-                                          orders[index].statue == "0"
-                                              ? Expanded(
-                                                  child: ElevatedButton(
-                                                    child: Text(
-                                                      'الغاء الطلب',
-                                                      style: TextStyle(
-                                                          fontSize: 16.0,
-                                                          color: Colors.red,
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                    onPressed: () {
-                                                      showDialog(
-                                                          barrierDismissible:
-                                                              true,
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return Dialog(
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              20.0)),
-                                                              //this right here
-                                                              child: Container(
-                                                                height: 250,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          12.0),
-                                                                  child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Text(
-                                                                        "تاكيد الغاء الطلب",
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                20.0,
-                                                                            fontWeight: FontWeight
-                                                                                .w400,
-                                                                            fontFamily:
-                                                                                'Cairo',
-                                                                            color:
-                                                                                Colors.black),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.all(15.0),
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .cancel,
-                                                                          color:
-                                                                              Colors.black45,
-                                                                          size:
-                                                                              50,
-                                                                        ),
-                                                                      ),
-                                                                      TextField(
-                                                                        textAlign:
-                                                                            TextAlign.center,
-                                                                        onChanged:
-                                                                            (value) {
-                                                                          setState(
-                                                                              () {
-                                                                            data =
-                                                                                value;
-                                                                          });
-                                                                        },
-                                                                        decoration:
-                                                                            InputDecoration(
-                                                                          hintText:
-                                                                              "سبب الالغاء ..",
-                                                                          contentPadding:
-                                                                              EdgeInsets.symmetric(vertical: 12),
-                                                                          border:
-                                                                              OutlineInputBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(15),
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Color.fromRGBO(72, 175, 218, 1),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      GestureDetector(
-                                                                        onTap:
-                                                                            () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          orders2[index].statue =
-                                                                              "4";
-                                                                          orders2[index].delivered_date =
-                                                                              data;
-                                                                          _store.editOrder(
-                                                                              orders2[index],
-                                                                              orders2[index].id,
-                                                                              context);
-                                                                        },
-                                                                        child:
-                                                                            Text(
-                                                                          "تاكيد",
-                                                                          style: TextStyle(
-                                                                              fontSize: 20.0,
-                                                                              decoration: TextDecoration.underline,
-                                                                              fontWeight: FontWeight.w400,
-                                                                              fontFamily: 'Cairo',
-                                                                              color: Colors.blue),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            );
-                                                          });
-                                                    },
-                                                    style: ButtonStyle(
-                                                      backgroundColor:
-                                                          MaterialStateProperty
-                                                              .all(
-                                                                  Colors.white),
-                                                    ),
-                                                  ),
-                                                )
-                                              : SizedBox(
-                                                  width: 0,
-                                                ),
+                                          SizedBox(
+                                            width: 0,
+                                          ),
                                         ],
                                       ),
                                     ),

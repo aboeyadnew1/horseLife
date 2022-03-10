@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/pages/home_page/home.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({Key key}) : super(key: key);

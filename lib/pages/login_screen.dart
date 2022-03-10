@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hourse_life/models/user.dart';
-import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/provider_new_account.dart';
 import 'package:hourse_life/pages/registration_done.dart';
-import 'package:hourse_life/pages/service_provider_dashboard.dart';
 import 'package:hourse_life/pages/sign_in_page.dart';
 import 'package:hourse_life/services/api_provider.dart';
 import 'package:hourse_life/services/static_data.dart';

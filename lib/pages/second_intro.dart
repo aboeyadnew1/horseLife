@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_life/pages/login_screen.dart';
-import 'package:hourse_life/pages/signin_or_options.dart';
+
 import 'package:hourse_life/services/static_data.dart';
 
 class SecondIntro extends StatelessWidget {

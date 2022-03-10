@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hourse_life/pages/profile_body.dart';
+import 'package:hourse_life/pages/profile/profile_body.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override

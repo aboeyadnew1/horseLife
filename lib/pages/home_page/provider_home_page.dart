@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/widgets/drawer.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 

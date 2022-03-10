@@ -325,7 +325,6 @@ class _PurchaseOrdersDetailsState extends State<PurchaseOrdersDetails> {
                                         text: txt_con.text),
                                     context);
                               }
-
                             },
                             child: Text(
                               "ارسال",

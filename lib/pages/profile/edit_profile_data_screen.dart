@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hourse_life/pages/profile_screen.dart';
-import '../componant/profile_pic.dart';
+import 'package:hourse_life/pages/profile/profile_screen.dart';
+import '../../componant/profile_pic.dart';
 
 class EditUserData extends StatefulWidget {
   const EditUserData({Key key}) : super(key: key);

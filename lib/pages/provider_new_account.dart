@@ -2,7 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hourse_life/models/user.dart';
-import 'package:hourse_life/pages/home.dart';
+import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/services/static_data.dart';
 import 'package:search_choices/search_choices.dart';
 
