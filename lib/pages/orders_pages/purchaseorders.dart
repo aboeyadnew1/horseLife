@@ -25,6 +25,7 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
   ScrollController controller = ScrollController();
   List<Order> orders2 = [];
   List<Order> orders = [];
+  var _firebase = FirebaseFirestore.instance.collection('Orders');
 
   @override
   Widget build(BuildContext context) {
@@ -370,9 +371,14 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
                                                                   ),
                                                                   Container(
                                                                     child:
-                                                                        TimeLine(
-                                                                      data: orders[
-                                                                          index],
+                                                                        InkWell(
+                                                                      child:
+                                                                          TimeLine(
+                                                                        data: orders[
+                                                                            index],
+                                                                      ),
+                                                                      onTap:
+                                                                          () {},
                                                                     ),
                                                                   ),
                                                                 ],
@@ -469,12 +475,25 @@ class _TimeLineState extends State<TimeLine> {
                           borderRadius: BorderRadius.circular(50)),
                       child: Padding(
                         padding: const EdgeInsets.all(2.0),
-                        child: Icon(
-                          data[index].id == "0"
-                              ? Icons.circle
-                              : Icons.check_circle,
-                          color: Colors.white,
-                          size: 20,
+                        child: InkWell(
+                          child: Icon(
+                            data[index].id == "0"
+                                ? Icons.circle
+                                : Icons.check_circle,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          onTap: () {
+                            if (data[index].id == '1') {
+                              var _firebase = FirebaseFirestore.instance
+                                  .collection('Orders');
+                              _firebase.doc(data[index].id).set({
+
+
+
+                              });
+                            }
+                          },
                         ),
                       ),
                     ),

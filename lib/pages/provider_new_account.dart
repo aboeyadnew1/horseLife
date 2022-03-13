@@ -23,7 +23,7 @@ class _providerNewAccountState extends State<providerNewAccount> {
   var txtAddress = TextEditingController();
   var txtJob = TextEditingController();
 
-  var firestore = FirebaseFirestore.instance.collection('users');
+  var firestore = FirebaseFirestore.instance.collection('Vendors');
   String selectedValue = "الاول";
 
   final List<DropdownMenuItem> items = [

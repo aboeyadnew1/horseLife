@@ -5,6 +5,7 @@ import 'package:hourse_life/models/MainService.dart';
 import 'package:hourse_life/models/SubService.dart';
 import 'package:hourse_life/models/service.dart';
 import 'package:hourse_life/services/Store.dart';
+import 'package:hourse_life/services/static_data.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -12,7 +13,6 @@ import 'home_page/provider_home_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-
 class newService extends StatefulWidget {
   @override
   _newServiceState createState() => _newServiceState();
@@ -514,35 +514,41 @@ class _newServiceState extends State<newService> {
                                   height: 50.0,
                                   child: ElevatedButton(
                                     onPressed: () async {
-                                      var serviceModel = Service(
-                                        name: txtName.text,
-                                        description: textDescription.text,
-                                        quantity: textQuantity.text,
-                                        deliveryMethod: textDeliveryMethod.text,
-                                        deliveryTime: textDeliveryTime.text,
-                                        price: textPrice.text,
-                                        image: _uploadedFileURL,
-                                        mainServiceType: getmainid(
-                                            selectedmainValue, mainservices),
-                                        subServiceType: getsubid(
-                                            selectedsubValue, subservices),
-                                        rate: 0,
-                                      );
-                                      var service = await firestore
-                                          .add(serviceModel.toMap());
+                                      getUserId().then((value) async {
+                                        var serviceModel = Service(
+                                            name: txtName.text,
+                                            description: textDescription.text,
+                                            quantity: double.parse(textQuantity.text),
+                                            deliveryMethod: textDeliveryMethod.text,
+                                            deliveryTime: textDeliveryTime.text,
+                                            price: double.parse(textPrice.text),
+                                            image: _uploadedFileURL,
+                                            mainServiceType: getmainid(
+                                                selectedmainValue, mainservices),
+                                            subServiceType: getsubid(
+                                                selectedsubValue, subservices),
+                                            rate: 0,
+                                            vendor_id: value
+                                        );
+                                        var service = await firestore
+                                            .add(serviceModel.toMap());
 
-                                      txtName.text = '';
-                                      textDescription.text = '';
-                                      textQuantity.text = '';
-                                      textPrice.text = '';
-                                      textDeliveryMethod.text = '';
-                                      textDeliveryTime.text = '';
+                                        txtName.text = '';
+                                        textDescription.text = '';
+                                        textQuantity.text = '';
+                                        textPrice.text = '';
+                                        textDeliveryMethod.text = '';
+                                        textDeliveryTime.text = '';
 
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (builder) =>
-                                                  providerHomePage()));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (builder) =>
+                                                    providerHomePage()));
+                                      });
+
+
+
                                     },
                                     child: Text(
                                       'إضافة الخدمة',

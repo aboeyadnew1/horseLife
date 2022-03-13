@@ -21,15 +21,25 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
         providers: [
-
-         ChangeNotifierProvider<UserProvider>(
+          ChangeNotifierProvider<UserProvider>(
             create: (context) => UserProvider(),
           ),
         ],
         child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: [
+              GlobalCupertinoLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: [
+              Locale("ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales
+              Locale('en', '') // English, no country code
+            ],
+            locale: Locale("ar", "AE"),
+            title: "حياة الخيل",
             theme: ThemeData(
               fontFamily: 'Cairo',
               primaryColor: Color.fromRGBO(72, 175, 218, 1),
@@ -37,27 +47,9 @@ class MyApp extends StatelessWidget {
             ),
             themeMode: ThemeMode.light,
             initialRoute: LogInScreen.id,
-            debugShowCheckedModeBanner: false,
             routes: {
-
               LogInScreen.id: (context) => LogInScreen(),
-
             }));
-    return MaterialApp(
-      localizationsDelegates: [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale("ar", "AE"), // OR Locale('ar', 'AE') OR Other RTL locales
-        Locale('en', '') // English, no country code
-      ],
-      locale: Locale("ar", "AE"),
-      debugShowCheckedModeBanner: false,
-      title: "حياة الخيل",
-      home: Intro(), //providerNewAccount(),
-    );
   }
 }
 

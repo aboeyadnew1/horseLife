@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:hourse_life/pages/add_services.dart';
-import 'package:hourse_life/widgets/bottom_navigation_bar.dart';
 import 'package:hourse_life/widgets/drawer.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -22,7 +20,7 @@ class Home extends StatelessWidget {
             ],
           ),),
       drawer: myDrawer(),
-      body: Center(
+      body:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

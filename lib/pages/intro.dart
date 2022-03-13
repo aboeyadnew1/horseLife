@@ -19,14 +19,6 @@ class Intro extends StatelessWidget {
               width: 120,
               height: 100,
             ),
-            // Text(
-            //   "حياة الخيل",
-            //   style: TextStyle(fontSize: 25),
-            // ),
-            // Text(
-            //   "HAYAT AL KHAIL",
-            //   style: TextStyle(fontSize: 25),
-            // ),
             Align(
                 alignment: Alignment.centerLeft,
                 child: Image.asset(
@@ -39,20 +31,19 @@ class Intro extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width,
               child: FittedBox(
-                child:Text(
+                child: Text(
                   ' نسعى دائماً لتقديم أفضل الخدمات  ',
                 ),
               ),
             ),
-              Container(
+            Container(
               width: MediaQuery.of(context).size.width,
               child: FittedBox(
-                child:Text(
+                child: Text(
                   ' لحياة الخيل بأعلى جودة و أفضل سعر  ',
                 ),
               ),
             ),
-
             SizedBox(
               height: 100,
             ),
@@ -63,8 +54,15 @@ class Intro extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SecondIntro()));
+
                   },
-                  child: Text('التالى ',style: TextStyle(fontFamily: 'Cairo',fontSize: 20.0,fontWeight: FontWeight.w400),),
+                  child: Text(
+                    'التالى ',
+                    style: TextStyle(
+                        fontFamily: 'Cairo',
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w400),
+                  ),
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromRGBO(72, 175, 218, 1),
                     shape: RoundedRectangleBorder(

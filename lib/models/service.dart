@@ -1,4 +1,5 @@
 class Service {
+  String vendor_id;
   String mainServiceType;
   String subServiceType;
   String name;
@@ -11,7 +12,9 @@ class Service {
   String id;
   var rate;
   Service(
-      {this.mainServiceType,
+      {
+        this.vendor_id,
+        this.mainServiceType,
       this.subServiceType,
       this.name,
       this.description,
@@ -27,6 +30,7 @@ class Service {
 
   Map<String, dynamic> toMap() {
     return {
+      'vendor_id' : this.vendor_id,
       'mainServiceType': this.mainServiceType,
       'subServiceType': this.subServiceType,
       'name': this.name,
