@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/Order.dart';
-import 'package:hourse_life/models/service.dart';
 import 'package:hourse_life/models/time_line_model.dart';
 import 'package:hourse_life/pages/orders_pages/purchaseordersdetails.dart';
 import 'package:hourse_life/provider/UserProvider.dart';
@@ -29,7 +28,7 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
 
   @override
   Widget build(BuildContext context) {
-    Store _store = new Store();
+    Store _store = Store();
 
     UserProvider userpro = Provider.of<UserProvider>(context, listen: false);
 
@@ -46,7 +45,7 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
             } else {
               orders.clear();
               for (var doc in snapshot.data.docs) {
-                Order order = new Order(
+                Order order = Order(
                   id: doc.get("id"),
                   user_id: doc.get("user_id"),
                   vendor_id: doc.get("vendor_id"),
@@ -439,16 +438,16 @@ class _TimeLineState extends State<TimeLine> {
   @override
   Widget build(BuildContext context) {
     List<TimeLineModel> data = [];
-    data.add(new TimeLineModel(
+    data.add(TimeLineModel(
         id: this.data.statue == "0" ? "1" : "0", name: "تحت الأجراء"));
-    data.add(new TimeLineModel(
+    data.add(TimeLineModel(
         id: this.data.statue == "1" ? "1" : "0", name: "جارى الشحن"));
-    data.add(new TimeLineModel(
+    data.add(TimeLineModel(
         id: this.data.statue == "2" ? "1" : "0", name: "تم الشحن"));
-    data.add(new TimeLineModel(
+    data.add(TimeLineModel(
         id: this.data.statue == "3" ? "1" : "0", name: "تم التوصيل"));
-    data.add(new TimeLineModel(
-        id: this.data.statue == "4" ? "1" : "0", name: "ملغي"));
+    data.add(
+        TimeLineModel(id: this.data.statue == "4" ? "1" : "0", name: "ملغي"));
 
     return Container(
       height: MediaQuery.of(context).size.height / 3,
@@ -487,11 +486,7 @@ class _TimeLineState extends State<TimeLine> {
                             if (data[index].id == '1') {
                               var _firebase = FirebaseFirestore.instance
                                   .collection('Orders');
-                              _firebase.doc(data[index].id).set({
-
-
-
-                              });
+                              _firebase.doc(data[index].id).set({});
                             }
                           },
                         ),

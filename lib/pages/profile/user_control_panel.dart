@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
-import 'package:hourse_life/pages/products_page.dart';
+import 'package:hourse_life/pages/products.dart';
 import 'package:hourse_life/pages/profile/profile_screen.dart';
 
 import '../../services/static_data.dart';
@@ -183,7 +183,7 @@ class _UserControlPanelState extends State<UserControlPanel> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProductsPage(),
+                      builder: (context) => produts(),
                     ));
               },
             ),

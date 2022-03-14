@@ -1,8 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hourse_life/old_complaints.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
+import 'package:hourse_life/pages/home_page/provider_home_page.dart';
+import 'package:hourse_life/services/static_data.dart';
 
 class Complaints extends StatelessWidget {
+  var firestore = FirebaseFirestore.instance.collection('Complaints');
+
+  TextEditingController txtName = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,21 +146,53 @@ class Complaints extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (builder) => Home()));
-                    },
-                    child: Text('أرسل'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(72, 175, 218, 1),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      fixedSize: Size(0, 45),
-                    ),
-                  ),
+                    onPressed: (){}
+
+    // async {
+    // {
+    // var Massage = await firestore.add(Massage(
+    // name: txtName.text,
+    // phone: txtPhone.text,
+    // email: txtEmail.text,
+    // password: txtPassword.text,
+    // recordNumber: txtRecordNumber.text,
+    // personalIdentity: txtPersonalIdentity.text,
+    // address: txtAddress.text,
+    // job: txtJob.text,
+    // lat: '0',
+    // long: '0')
+    //     .toMap());
+    //
+    // var doc = await user.get();
+    // setUserId(doc.id);
+    // Navigator.push(
+    // context,
+    // MaterialPageRoute(
+    // builder: (context) => providerHomePage(),
+    // ),
+    // );
+
+
+
+
+
+
+
+
+
+
+                  //
+                  //   child: Text('أرسل'),
+                  //   style: ElevatedButton.styleFrom(
+                  //     primary: Color.fromRGBO(72, 175, 218, 1),
+                  //     shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(15)),
+                  //     fixedSize: Size(0, 45),
+                  //   ),
+                  // ),
                 ),
               ),
-            ],
+            )]
           ),
         ),
       ),
