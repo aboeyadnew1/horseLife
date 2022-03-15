@@ -2,12 +2,12 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' show BarChart;
+import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/pages/add_services.dart';
 import 'package:hourse_life/widgets/drawer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:hourse_life/constant';
 class providerHomePage extends StatefulWidget {
   static String id = "providerHomePage";
 
@@ -31,6 +31,7 @@ class _providerHomePageState extends State<providerHomePage> {
   List<_ChartData> data;
   TooltipBehavior _tooltip;
   bool isLoading = false;
+  double largest=1.0, minimun=1.0;
 
   @override
   void initState() {
@@ -40,7 +41,6 @@ class _providerHomePageState extends State<providerHomePage> {
   }
 
   Future<void> getData() async {
-    getUserId
     initial = 0;
     isLoading = true;
     Vendors = await firebase.get();
@@ -48,32 +48,86 @@ class _providerHomePageState extends State<providerHomePage> {
     service = await services.get();
     Orders = await order.get();
 
-    order.where('statue', isEqualTo: 2).get().then((value) {
+    order.where('statue', isEqualTo: 2).where('vendor_id', isEqualTo: uid).get().then((value) {
       setState(() {
         delivery += 1;
+        data = [
+          _ChartData('طلبات جديدة', initial.toDouble()),
+          _ChartData('طلبات الشحن', delivery.toDouble()),
+          _ChartData('طلبات ملغية', not_delivered.toDouble()),
+        ];
+
+        var nums = [
+          initial.toDouble(),
+          delivery.toDouble(),
+          not_delivered.toDouble(),
+        ];
+        nums.sort();
+
+          largest = nums.last;
+          minimun = nums.first;
       });
     });
-    order.where('statue', isEqualTo: 0).get().then((value) {
+    order.where('statue', isEqualTo: 0).where('vendor_id', isEqualTo: uid).get().then((value) {
       setState(() {
         initial += 1;
+        data = [
+          _ChartData('طلبات جديدة', initial.toDouble()),
+          _ChartData('طلبات الشحن', delivery.toDouble()),
+          _ChartData('طلبات ملغية', not_delivered.toDouble()),
+        ];
+        var nums = [
+          initial.toDouble(),
+          delivery.toDouble(),
+          not_delivered.toDouble(),
+        ];
+        nums.sort();
+
+        largest = nums.last;
+        minimun = nums.first;
       });
     });
-    order.where('statue', isEqualTo: 4).get().then((value) {
+    order.where('statue', isEqualTo: 4).where('vendor_id', isEqualTo: uid).get().then((value) {
       setState(() {
         not_delivered += 1;
+        data = [
+          _ChartData('طلبات جديدة', initial.toDouble()),
+          _ChartData('طلبات الشحن', delivery.toDouble()),
+          _ChartData('طلبات ملغية', not_delivered.toDouble()),
+        ];
+        var nums = [
+          initial.toDouble(),
+          delivery.toDouble(),
+          not_delivered.toDouble(),
+        ];
+        nums.sort();
+
+        largest = nums.last;
+        minimun = nums.first;
       });
     });
-    order.get().then((value) {
+    order.where('vendor_id', isEqualTo: uid).get().then((value) {
       for (int i = 0; i < value.docs.length; i++) {
-        sales += value.docs[i].get("total");
+          sales += value.docs[i].get("total");
       }
+      setState(() {
+        data = [
+          _ChartData('طلبات جديدة', initial.toDouble()),
+          _ChartData('طلبات الشحن', delivery.toDouble()),
+          _ChartData('طلبات ملغية', not_delivered.toDouble()),
+        ];
+        var nums = [
+          initial.toDouble(),
+          delivery.toDouble(),
+          not_delivered.toDouble(),
+        ];
+        nums.sort();
+
+        largest = nums.last;
+        minimun = nums.first;
+      });
     });
-    data = [
-      _ChartData('طلبات جديدة', initial.toDouble()),
-      _ChartData('طلبات الشحن', delivery.toDouble()),
-      _ChartData('طلبات ملغية', not_delivered.toDouble()),
-      _ChartData('المبيعات', sales.toDouble()),
-    ];
+
     isLoading = false;
   }
 
@@ -97,9 +151,7 @@ class _providerHomePageState extends State<providerHomePage> {
     _tooltip = TooltipBehavior(enable: true);
     final ProgressDialog pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
-    return (isLoading)
-        ? Center(child: CircularProgressIndicator())
-        : Scaffold(
+    return Scaffold(
             appBar: AppBar(
               toolbarHeight: 100.0,
               actions: [],
@@ -123,7 +175,9 @@ class _providerHomePageState extends State<providerHomePage> {
               ),
             ),
             drawer: myDrawer(),
-            body: SafeArea(
+            body: (isLoading)
+                ? Center(child: CircularProgressIndicator())
+                : SafeArea(
                 child: SingleChildScrollView(
                     child: Center(
                         child: Padding(
@@ -224,7 +278,7 @@ class _providerHomePageState extends State<providerHomePage> {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 5.0),
                                           child: Text(
-                                            Customers.size.toString(),
+                                           initial.toString(),
                                             style: TextStyle(
                                                 fontSize: 28.0,
                                                 fontFamily: 'Cairo',
@@ -358,8 +412,8 @@ class _providerHomePageState extends State<providerHomePage> {
                                               primaryXAxis: CategoryAxis(),
                                               primaryYAxis: NumericAxis(
                                                   minimum: 0,
-                                                  maximum: 40,
-                                                  interval: 10),
+                                                  maximum: largest+2,
+                                                  interval: minimun/2),
                                               tooltipBehavior: _tooltip,
                                               series: <
                                                   ChartSeries<_ChartData,

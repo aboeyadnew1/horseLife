@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/massage.dart';
 import 'package:hourse_life/old_complaints.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
 import 'package:hourse_life/services/static_data.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class Complaints extends StatelessWidget {
   var firestore = FirebaseFirestore.instance.collection('VendorMassages');
@@ -13,6 +15,12 @@ class Complaints extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final ProgressDialog pr = ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
+
+
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -157,24 +165,53 @@ class Complaints extends StatelessWidget {
                       onPressed: () async {
                         {
                           if (txtComplainTitle.text.trim() == "" ||
-                              txtComplainBody.text.trim() == "") {}
+                              txtComplainBody.text.trim() == "") {
+                            return;
+                          } else {
+                            pr.show();
+                            DateTime now = DateTime.now();
+                            String date2 = now.year.toString() +
+                                "-" +
+                                now.month.toString() +
+                                "-" +
+                                now.day.toString();
 
-                          var massage = await firestore.add(Massage(
-                            massage: txtComplainTitle.text,
-                            description: txtComplainBody.text,
-                            date: '',
-                            vendor_id: '',
-                            vendor_name: '',
-                          ).toMap());
+                            String now_date = now.year.toString() +
+                                now.month.toString() +
+                                now.day.toString() +
+                                now.hour.toString() +
+                                now.minute.toString() +
+                                now.second.toString() +
+                                now.millisecond.toString() +
+                                now.microsecond.toString();
 
-                          var doc = await massage.get();
-                          setUserId(doc.id);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => providerHomePage(),
-                            ),
-                          );
+                            await firestore.doc(now_date).set(Massage(
+                                  massage: txtComplainTitle.text,
+                                  description: txtComplainBody.text,
+                                  date: '' + date2,
+                                  vendor_id: uid,
+                                  id: now_date,
+                                  vendor_name: uname,
+                                ).toMap()).then((value){
+                                  pr.hide();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => providerHomePage(),
+                                    ),
+                                  );
+                            }).onError((error, stackTrace){
+                              pr.hide();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => providerHomePage(),
+                                ),
+                              );
+                            });
+
+
+                          }
                         }
                       },
                     ),

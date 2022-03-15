@@ -15,6 +15,6 @@ class CacheHelper {
     String key,
     dynamic value,
   }) async {
-    return sharedPreferences.setString(key, value);
+    return await sharedPreferences.setString(key, value);
   }
 }

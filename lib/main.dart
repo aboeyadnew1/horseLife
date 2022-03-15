@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hourse_life/constants/const.dart';
+import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
 import 'package:hourse_life/provider/UserProvider.dart';
@@ -19,13 +19,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await CacheHelper.init();
-  uid = CacheHelper.getData(key: kUid);
+   uid = CacheHelper.getData(key: kUid);
+   uname = CacheHelper.getData(key: kuname);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<UserProvider>(
