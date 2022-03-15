@@ -4,6 +4,7 @@ import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
 import 'package:hourse_life/pages/profile/profile_screen.dart';
 import 'package:hourse_life/pages/profile/user_control_panel.dart';
+import 'package:hourse_life/pages/services/services.dart';
 import 'package:hourse_life/services/static_data.dart';
 
 class myDrawer extends StatefulWidget {
@@ -192,6 +193,37 @@ class _myDrawerState extends State<myDrawer> {
                       fontWeight: FontWeight.w400),
                 ),
               ],
+            ),
+            SizedBox(height: 20.0),
+            Divider(
+              height: 1.0,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 20.0),
+            InkWell(
+              onTap: () {
+                removeUserId();
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Services()),
+                    (route) => false);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.login_outlined,
+                    color: Color.fromRGBO(72, 175, 218, 1),
+                  ),
+                  Text(
+                    'اضافه خدمه',
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        fontFamily: 'Cairo',
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 20.0),
             Divider(

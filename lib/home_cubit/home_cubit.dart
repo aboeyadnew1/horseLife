@@ -76,18 +76,24 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
-  List<ServiceModel>services=[];
+  Map<int, bool> isLiked = {};
+  void changeIsLiked(int index) {
+    isLiked[index] = !(isLiked[index] ?? false);
+    emit(ChangeLiked());
+  }
+
+  List<ServiceModel> services = [];
   ServiceModel serviceModel;
   void getVendorServices() {
     emit(GetVendorServicesLoading());
     FirebaseFirestore.instance
         .collection('service')
-        .where("vendor_id",isEqualTo: uid)
+        .where("vendor_id", isEqualTo: uid)
         .get()
         .then((value) {
-          value.docs.forEach((element) { 
-           services.add(ServiceModel.fromJson(element.data())); 
-          });
+      value.docs.forEach((element) {
+        services.add(ServiceModel.fromJson(element.data()));
+      });
       emit(GetVendorServicesSucsses());
     }).catchError((er) {
       emit(GetVendorServicesSucsses());
@@ -257,6 +263,21 @@ class HomeCubit extends Cubit<HomeState> {
       });
     }).catchError((er) {
       emit(SetImageServicesError());
+
+      print(er.toString());
+    });
+  }
+
+  void deleteServices() {
+    emit(DeleteVendorServicesLoading());
+    FirebaseFirestore.instance
+        .collection('service')
+        .doc(serviceModel.id)
+        .delete()
+        .then((value) {
+      emit(DeleteVendorServicesSucsses());
+    }).catchError((er) {
+      emit(DeleteVendorServicesSucsses());
 
       print(er.toString());
     });
