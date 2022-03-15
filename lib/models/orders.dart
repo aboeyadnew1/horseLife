@@ -1,7 +1,5 @@
 import 'dart:core';
 
-import 'dart:core';
-
 import 'package:hourse_life/models/service.dart';
 
 class Order {

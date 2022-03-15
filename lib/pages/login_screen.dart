@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hourse_life/constants/const.dart';
 import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
@@ -8,6 +9,7 @@ import 'package:hourse_life/pages/registration_done.dart';
 import 'package:hourse_life/pages/sign_in_page.dart';
 import 'package:hourse_life/services/api_provider.dart';
 import 'package:hourse_life/services/static_data.dart';
+import 'package:hourse_life/share/cache_helper.dart';
 
 class LogInScreen extends StatefulWidget {
   static String id = 'login';
@@ -63,10 +65,13 @@ class _LogInScreenState extends State<LogInScreen> {
                         // set userid in shared preference
                         var userDoc = data.docs.first;
                         setUserId(userDoc.id);
-                        //go to home
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => providerHomePage()));
+                        CacheHelper.setData(key: kUid, value: userDoc.id);
 
+                        //go to home
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => providerHomePage()));
                       } else {
                         showDialog(
                             context: context,
@@ -120,7 +125,6 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
-
             ],
           ),
         ),
@@ -140,12 +144,10 @@ class _LogInScreenState extends State<LogInScreen> {
             child: Text(text),
           ),
           TextField(
-
             // textAlign: TextAlign.center,
             controller: txtControl,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(
-                  15.0, 15.0, 10, 15),
+              contentPadding: EdgeInsets.fromLTRB(15.0, 15.0, 10, 15),
               suffixIcon: isPassword
                   ? InkWell(
                       onTap: () {},
