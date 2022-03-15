@@ -1,7 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.example.admin_life_horse">
    <application
         android:label="admin_life_horse"
+=======
+    package="com.raeda.hourse_life">
+   <application
+        android:label="hourse_life"
+>>>>>>> b3ba54b (first)
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
