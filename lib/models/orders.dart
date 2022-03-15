@@ -6,7 +6,7 @@ class Order {
   String id;
   String user_id;
   String vendor_id;
-  List<Service> services;
+  List<ServiceModel> services;
   String email;
   String address;
   String state;

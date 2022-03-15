@@ -1,6 +1,6 @@
-class User {
-
+class UserModel {
   String id;
+  String image;
   String name;
   String phone;
   String email;
@@ -15,24 +15,25 @@ class User {
   String subServiceType;
   bool approved = false;
   bool visable = true;
-  User(
-      {
-        this.id,
-        this.name,
-        this.phone,
-        this.email,
-        this.password,
-        this.recordNumber,
-        this.personalIdentity,
-        this.address,
-        this.job,
-        this.lat,
-        this.long});
+  UserModel(
+      {this.id,
+      this.name,
+      this.image,
+      this.phone,
+      this.email,
+      this.password,
+      this.recordNumber,
+      this.personalIdentity,
+      this.address,
+      this.job,
+      this.lat,
+      this.long});
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
       'name': this.name,
       'phone': this.phone,
+      'image': this.image,
       'email': this.email,
       'password': this.password,
       'recordNumber': this.recordNumber,
@@ -50,9 +51,10 @@ class User {
     return map;
   }
 
-  User.fromMap(Map<String, dynamic> json) {
+  UserModel.fromMap(Map<String, dynamic> json) {
     this.name = json['name'];
     this.phone = json['phone'];
+    this.image = json['phone'];
     this.email = json['email'];
     this.password = json['password'];
     this.recordNumber = json['recordNumber'];

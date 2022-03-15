@@ -21,7 +21,7 @@ class PurchaseOrdersDetails extends StatefulWidget {
 
 class _PurchaseOrdersDetailsState extends State<PurchaseOrdersDetails> {
   ScrollController controller = ScrollController();
-  List<Service> services = [];
+  List<ServiceModel> services = [];
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class _PurchaseOrdersDetailsState extends State<PurchaseOrdersDetails> {
             } else {
               services.clear();
               for (var doc in snapshot.data.docs) {
-                Service service = new Service(
+                ServiceModel service = new ServiceModel(
                   id: doc.get("id"),
                   description: doc.get("description"),
                   image: doc.get("image"),

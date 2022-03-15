@@ -65,16 +65,13 @@ class _LogInScreenState extends State<LogInScreen> {
                         // set userid in shared preference
                         var userDoc = data.docs.first;
                         setUserId(userDoc.id);
+                        CacheHelper.setData(key: kUid, value: userDoc.id);
 
-                        CacheHelper.setData(key: kUid, value: userDoc.id).then((value) {
-                          CacheHelper.setData(key: kuname, value: userDoc.get("name")).then((value){
-                            print( userDoc.get("name"));
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => providerHomePage()));
-                          });
-                        });
+                        //go to home
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => providerHomePage()));
                       } else {
                         showDialog(
                             context: context,

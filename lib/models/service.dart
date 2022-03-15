@@ -1,4 +1,4 @@
-class Service {
+class ServiceModel {
   String vendor_id;
   String mainServiceType;
   String subServiceType;
@@ -11,10 +11,9 @@ class Service {
   String image;
   String id;
   var rate;
-  Service(
-      {
-        this.vendor_id,
-        this.mainServiceType,
+  ServiceModel(
+      {this.vendor_id,
+      this.mainServiceType,
       this.subServiceType,
       this.name,
       this.description,
@@ -26,11 +25,24 @@ class Service {
       this.rate,
       this.deliveryTime});
 
-
+  ServiceModel.fromJson(Map<String, dynamic> json) {
+    vendor_id = json['vendor_id'];
+    mainServiceType = json['mainServiceType'];
+    subServiceType = json['subServiceType'];
+    name = json['name'];
+    description = json['description'];
+    quantity = json['quantity'];
+    price = json['price'];
+    deliveryMethod = json['deliveryMethod'];
+    image = json['image'];
+    id = json['id'];
+    rate = json['rate'];
+    deliveryTime = json['deliveryTime'];
+  }
 
   Map<String, dynamic> toMap() {
     return {
-      'vendor_id' : this.vendor_id,
+      'vendor_id': this.vendor_id,
       'mainServiceType': this.mainServiceType,
       'subServiceType': this.subServiceType,
       'name': this.name,

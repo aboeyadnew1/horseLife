@@ -106,7 +106,7 @@ class _PageState extends State<Page> {
   Future<bool> getUser(userId) async {
     var firestore = await FirebaseFirestore.instance.collection('users');
     var doc = await firestore.doc(userId).get();
-    var user = User.fromMap(doc.data());
+    var user = UserModel.fromMap(doc.data());
     GlobalData.user = user;
     GlobalData.userId = userId;
     return user.approved;
