@@ -1,49 +1,48 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hourse_life/models/massage.dart';
 import 'package:hourse_life/old_complaints.dart';
-import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
 import 'package:hourse_life/services/static_data.dart';
 
 class Complaints extends StatelessWidget {
-  var firestore = FirebaseFirestore.instance.collection('Complaints');
+  var firestore = FirebaseFirestore.instance.collection('VendorMassages');
 
-  TextEditingController txtName = TextEditingController();
-
+  TextEditingController txtComplainTitle = TextEditingController();
+  TextEditingController txtComplainBody = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        toolbarHeight: 149,
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        backgroundColor: Color.fromRGBO(100, 192, 229, 1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
+        appBar: AppBar(
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 149,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          backgroundColor: Color.fromRGBO(100, 192, 229, 1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            ),
+          ),
+          title: new Text(
+            'الشكــــاوى و المقترحـــات',
+            style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Cairo',
+                color: Colors.white),
           ),
         ),
-        title: new Text(
-          'الشكــــاوى و المقترحـــات',
-          style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w400,
-              fontFamily: 'Cairo',
-              color: Colors.white),
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(
                 height: 30.0,
               ),
@@ -71,6 +70,7 @@ class Complaints extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.only(top: 10.0, right: 5.0),
                     child: TextField(
+                      controller: txtComplainTitle,
                       maxLines: 1,
                       autofocus: true,
                       decoration: InputDecoration(
@@ -100,6 +100,7 @@ class Complaints extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
+                      controller: txtComplainBody,
                       maxLength: 180,
                       maxLines: 3,
                       textAlign: TextAlign.right,
@@ -142,60 +143,44 @@ class Complaints extends StatelessWidget {
                 height: 50.0,
               ),
               SizedBox(
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: ElevatedButton(
-                    onPressed: (){}
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: ElevatedButton(
+                      child: Text('أرسل'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(72, 175, 218, 1),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        fixedSize: Size(0, 45),
+                      ),
+                      onPressed: () async {
+                        {
+                          if (txtComplainTitle.text.trim() == "" ||
+                              txtComplainBody.text.trim() == "") {}
 
-    // async {
-    // {
-    // var Massage = await firestore.add(Massage(
-    // name: txtName.text,
-    // phone: txtPhone.text,
-    // email: txtEmail.text,
-    // password: txtPassword.text,
-    // recordNumber: txtRecordNumber.text,
-    // personalIdentity: txtPersonalIdentity.text,
-    // address: txtAddress.text,
-    // job: txtJob.text,
-    // lat: '0',
-    // long: '0')
-    //     .toMap());
-    //
-    // var doc = await user.get();
-    // setUserId(doc.id);
-    // Navigator.push(
-    // context,
-    // MaterialPageRoute(
-    // builder: (context) => providerHomePage(),
-    // ),
-    // );
+                          var massage = await firestore.add(Massage(
+                            massage: txtComplainTitle.text,
+                            description: txtComplainBody.text,
+                            date: '',
+                            vendor_id: '',
+                            vendor_name: '',
+                          ).toMap());
 
-
-
-
-
-
-
-
-
-
-                  //
-                  //   child: Text('أرسل'),
-                  //   style: ElevatedButton.styleFrom(
-                  //     primary: Color.fromRGBO(72, 175, 218, 1),
-                  //     shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(15)),
-                  //     fixedSize: Size(0, 45),
-                  //   ),
-                  // ),
-                ),
-              ),
-            )]
+                          var doc = await massage.get();
+                          setUserId(doc.id);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => providerHomePage(),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  )),
+            ]),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
