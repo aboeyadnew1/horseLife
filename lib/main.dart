@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hourse_life/constants/const.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
+import 'package:hourse_life/pages/home_page/provider_home_page.dart';
 import 'package:hourse_life/provider/UserProvider.dart';
 import 'package:hourse_life/services/static_data.dart';
+import 'package:hourse_life/share/cache_helper.dart';
 import 'package:provider/provider.dart';
 import 'data/global_data.dart';
 import 'models/user.dart';
@@ -15,6 +18,8 @@ import 'pages/registration_done.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await CacheHelper.init();
+  uid = CacheHelper.getData(key: kUid);
   runApp(MyApp());
 }
 
@@ -46,9 +51,10 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.lightBlue,
             ),
             themeMode: ThemeMode.light,
-            initialRoute: LogInScreen.id,
+            initialRoute: uid != null ? providerHomePage.id : LogInScreen.id,
             routes: {
               LogInScreen.id: (context) => LogInScreen(),
+              providerHomePage.id: (context) => providerHomePage(),
             }));
   }
 }
