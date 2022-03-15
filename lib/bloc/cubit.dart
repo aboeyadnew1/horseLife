@@ -173,6 +173,7 @@ class HomeCubit extends Cubit<HomeState> {
       vendor_id: user.id,
       name: name,
     );
+    //sharedPrefrences
     emit(UpdateVendorServicesLoading());
     FirebaseFirestore.instance
         .collection('service')
