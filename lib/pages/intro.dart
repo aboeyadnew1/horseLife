@@ -7,8 +7,8 @@ class Intro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
@@ -47,10 +47,21 @@ class Intro extends StatelessWidget {
             SizedBox(
               height: 100,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
+
+          ],
+        ),
+      ),
+      bottomSheet:  Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50,
+        margin: EdgeInsets.only(bottom: 10,right: 10,left: 10),
+        child: Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SecondIntro()));
@@ -70,26 +81,30 @@ class Intro extends StatelessWidget {
                     fixedSize: Size(170, 50),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10.0),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        size: 15,
-                        color: Color.fromRGBO(72, 175, 218, 1),
-                      ),
-                      Icon(
-                        Icons.circle,
-                        size: 15,
-                        color: Color.fromRGBO(72, 175, 218, 0.4),
-                      ),
-                    ],
+              ),
+              Expanded(
+                child: Center(
+                  child: Container(
+                    width: 40,
+                    child: Row(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            size: 15,
+                            color: Color.fromRGBO(72, 175, 218, 1),
+                          ),
+                          Icon(
+                            Icons.circle,
+                            size: 15,
+                            color: Color.fromRGBO(72, 175, 218, 0.4),
+                          ),
+                        ],
+                    ),
                   ),
                 ),
-              ],
-            )
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

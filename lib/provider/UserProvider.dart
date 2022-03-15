@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hourse_life/data/global_data.dart';
 import 'package:hourse_life/models/user.dart';
 
 class UserProvider extends ChangeNotifier {

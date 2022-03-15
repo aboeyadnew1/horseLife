@@ -8,8 +8,8 @@ class SecondIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
@@ -59,44 +59,45 @@ class SecondIntro extends StatelessWidget {
             SizedBox(
               height: 100,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setIntro();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LogInScreen()));
-                  },
-                  child: Text(
-                    'إبداء ',
-                    style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w700),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(72, 175, 218, 1),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    fixedSize: Size(300, 50),
-                  ),
-                ),
-                // Row(
-                //   children: [
-                //     Icon(
-                //       Icons.circle,
-                //       size: 15,
-                //       color: Color.fromRGBO(72, 175, 218, 1),
-                //     ),
-                //     Icon(
-                //       Icons.circle,
-                //       size: 15,
-                //       color: Color.fromRGBO(72, 175, 218, 0.4),
-                //     ),
-                //   ],
-                // ),
-              ],
-            )
+
           ],
         ),
+      ),
+      bottomSheet:  Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              setIntro();
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LogInScreen()));
+            },
+            child: Text(
+              'إبداء ',
+              style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w700),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: Color.fromRGBO(72, 175, 218, 1),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              fixedSize: Size(300, 50),
+            ),
+          ),
+          // Row(
+          //   children: [
+          //     Icon(
+          //       Icons.circle,
+          //       size: 15,
+          //       color: Color.fromRGBO(72, 175, 218, 1),
+          //     ),
+          //     Icon(
+          //       Icons.circle,
+          //       size: 15,
+          //       color: Color.fromRGBO(72, 175, 218, 0.4),
+          //     ),
+          //   ],
+          // ),
+        ],
       ),
     );
   }

@@ -20,7 +20,7 @@ class _myDrawerState extends State<myDrawer> {
         child: ListView(
           children: [
             SizedBox(
-              height: 40.0,
+              height: 30.0,
             ),
             Image.asset(
               'images/profile.png',
@@ -36,7 +36,7 @@ class _myDrawerState extends State<myDrawer> {
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             Column(children: [
               InkWell(
                 child: Row(
@@ -64,7 +64,43 @@ class _myDrawerState extends State<myDrawer> {
               ),
             ]),
             SizedBox(
-              height: 25.0,
+              height: 20.0,
+            ),
+            Divider(
+              height: 1.0,
+              color: Colors.blue,
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Column(children: [
+              InkWell(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.menu,
+                      color: Color.fromRGBO(72, 175, 218, 1),
+                    ),
+                    Text(
+                      'الخدمات المقدمه',
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserControlPanel()));
+                },
+              ),
+            ]),
+            SizedBox(
+              height: 20.0,
             ),
             Divider(
               height: 1.0,
@@ -93,12 +129,12 @@ class _myDrawerState extends State<myDrawer> {
                     MaterialPageRoute(builder: (context) => PurchaseOrders()));
               },
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -135,12 +171,12 @@ class _myDrawerState extends State<myDrawer> {
                 },
               ),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -157,12 +193,12 @@ class _myDrawerState extends State<myDrawer> {
                 ),
               ],
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             InkWell(
               onTap: () {
                 removeUserId();
@@ -188,12 +224,12 @@ class _myDrawerState extends State<myDrawer> {
                 ],
               ),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 20.0),
           ],
         ),
       ),
