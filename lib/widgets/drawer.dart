@@ -1,10 +1,13 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:hourse_life/pages/complaints%20_page.dart';
 import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
+import 'package:hourse_life/pages/profile/edit_profile_data_screen.dart';
 import 'package:hourse_life/pages/profile/profile_screen.dart';
-import 'package:hourse_life/pages/profile/user_control_panel.dart';
 import 'package:hourse_life/services/static_data.dart';
+import 'package:hourse_life/pages/products.dart';
 
 class myDrawer extends StatefulWidget {
   @override
@@ -29,25 +32,63 @@ class _myDrawerState extends State<myDrawer> {
             ),
             Center(child: Text('عبدالله خالد')),
             SizedBox(
-              height: 20.0,
+              height: 15.0,
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 15.0),
+
+            SizedBox(height: 15.0),
+            Column(children: [
+              InkWell(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'images/personicon.png',
+                      width: 25,
+                      height: 25,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      'الحساب الشخصي',
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EditUserData()));
+                },
+              ),
+            ]),
+            SizedBox(
+              height: 15.0,
+            ),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 20.0),
+            SizedBox(
+              height: 15.0,
+            ),
             Column(children: [
               InkWell(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(
-                      Icons.dashboard,
+                      Icons.shopping_bag,
                       color: Color.fromRGBO(72, 175, 218, 1),
                     ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
                     Text(
-                      'لوحة التحكم',
+                      'المنتجات',
                       style: TextStyle(
                           fontSize: 16.0,
                           fontFamily: 'Cairo',
@@ -59,54 +100,21 @@ class _myDrawerState extends State<myDrawer> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => UserControlPanel()));
+                        builder: (context) => Products(),
+                      ));
                 },
               ),
             ]),
             SizedBox(
-              height: 20.0,
+              height: 15.0,
             ),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
             SizedBox(
-              height: 20.0,
+              height: 15.0,
             ),
-            Column(children: [
-              InkWell(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.menu,
-                      color: Color.fromRGBO(72, 175, 218, 1),
-                    ),
-                    Text(
-                      'الخدمات المقدمه',
-                      style: TextStyle(
-                          fontSize: 16.0,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => UserControlPanel()));
-                },
-              ),
-            ]),
-            SizedBox(
-              height: 20.0,
-            ),
-            Divider(
-              height: 1.0,
-              color: Colors.blue,
-            ),
-            SizedBox(height: 25.0),
             InkWell(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -115,8 +123,11 @@ class _myDrawerState extends State<myDrawer> {
                     Icons.shopping_cart,
                     color: Color.fromRGBO(72, 175, 218, 1),
                   ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
                   Text(
-                    'تتبع عملية الشراء',
+                    'الطلبات ',
                     style: TextStyle(
                         fontSize: 16.0,
                         fontFamily: 'Cairo',
@@ -129,12 +140,12 @@ class _myDrawerState extends State<myDrawer> {
                     MaterialPageRoute(builder: (context) => PurchaseOrders()));
               },
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 15.0),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 15.0),
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -151,6 +162,9 @@ class _myDrawerState extends State<myDrawer> {
                     Icon(
                       Icons.report_problem_outlined,
                       color: Color.fromRGBO(72, 175, 218, 1),
+                    ),
+                    SizedBox(
+                      width: 10.0,
                     ),
                     Text(
                       'الشكاوى',
@@ -171,34 +185,17 @@ class _myDrawerState extends State<myDrawer> {
                 },
               ),
             ),
-            SizedBox(height: 20.0),
+
+            SizedBox(
+              height: 15.0,
+            ),
+
+
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 20.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.credit_card,
-                  color: Color.fromRGBO(72, 175, 218, 1),
-                ),
-                Text(
-                  'الدفع',
-                  style: TextStyle(
-                      fontSize: 16.0,
-                      fontFamily: 'Cairo',
-                      fontWeight: FontWeight.w400),
-                ),
-              ],
-            ),
-            SizedBox(height: 20.0),
-            Divider(
-              height: 1.0,
-              color: Colors.blue,
-            ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 15.0),
             InkWell(
               onTap: () {
                 removeUserId();
@@ -214,6 +211,9 @@ class _myDrawerState extends State<myDrawer> {
                     Icons.login_outlined,
                     color: Color.fromRGBO(72, 175, 218, 1),
                   ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
                   Text(
                     'تسجيل الخروج',
                     style: TextStyle(
@@ -224,12 +224,12 @@ class _myDrawerState extends State<myDrawer> {
                 ],
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 15.0),
             Divider(
               height: 1.0,
               color: Colors.blue,
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 15.0),
           ],
         ),
       ),

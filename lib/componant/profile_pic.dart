@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, non_constant_identifier_names, unused_local_variable, prefer_const_constructors, unnecessary_string_escapes
+
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -53,7 +55,6 @@ class _ProfilePicState extends State<ProfilePic> {
                 color: Color(0XFFF5F6F9),
                 onPressed: () async {
                   await chooseFile(context);
-                  print('000000000000000000000000000000');
                 },
                 child: Icon(Icons.camera_alt_outlined),
               )),
@@ -106,11 +107,7 @@ class _ProfilePicState extends State<ProfilePic> {
 
           print('File Uploaded');
         });
-
       });
     }
-
   }
-
 }
-

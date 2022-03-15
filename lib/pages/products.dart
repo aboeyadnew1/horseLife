@@ -1,14 +1,16 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:hourse_life/pages/complaints%20_page.dart';
 
-class produts extends StatefulWidget {
-  const produts({Key key}) : super(key: key);
+class Products extends StatefulWidget {
+  const Products({Key key}) : super(key: key);
 
   @override
-  _produtsState createState() => _produtsState();
+  _ProductsState createState() => _ProductsState();
 }
 
-class _produtsState extends State<produts> {
+class _ProductsState extends State<Products> {
   @override
   @override
   Widget build(BuildContext context) {

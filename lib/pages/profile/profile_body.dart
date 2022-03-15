@@ -33,14 +33,10 @@ class Body extends StatelessWidget {
         SizedBox(
           height: 20.0,
         ),
-        ProfileMenu(
-          icons: (Icons.home_repair_service),
-          text: "الخدمات المقدمة",
-          press: (){},
-      ),
+
         ProfileMenu(
           icons: (Icons.person_pin),
-          text: " بيانات الحساب",
+          text: " تعديل بيانات الحساب",
           press: (){
             Navigator.push(
                 context,
@@ -48,14 +44,6 @@ class Body extends StatelessWidget {
                     builder: (context) => EditUserData()));
 
           },
-        ), ProfileMenu(
-          icons: (Icons.shopping_cart_outlined),
-          text: "الطلبات السابقة",
-          press: (){},
-        ), ProfileMenu(
-          icons: (FontAwesome.bar_chart),
-          text: "الفواتير ",
-          press: (){},
         ), ProfileMenu(
           icons: (Icons.logout),
           text: "تسجيل الخروج",

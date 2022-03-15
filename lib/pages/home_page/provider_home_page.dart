@@ -8,6 +8,7 @@ import 'package:hourse_life/widgets/drawer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
 class providerHomePage extends StatefulWidget {
   static String id = "providerHomePage";
 
@@ -31,7 +32,7 @@ class _providerHomePageState extends State<providerHomePage> {
   List<_ChartData> data;
   TooltipBehavior _tooltip;
   bool isLoading = false;
-  double largest=1.0, minimun=1.0;
+  double largest = 1.0, minimun = 1.0;
 
   @override
   void initState() {
@@ -48,7 +49,11 @@ class _providerHomePageState extends State<providerHomePage> {
     service = await services.get();
     Orders = await order.get();
 
-    order.where('statue', isEqualTo: 2).where('vendor_id', isEqualTo: uid).get().then((value) {
+    order
+        .where('statue', isEqualTo: 2)
+        .where('vendor_id', isEqualTo: uid)
+        .get()
+        .then((value) {
       setState(() {
         delivery += 1;
         data = [
@@ -64,11 +69,15 @@ class _providerHomePageState extends State<providerHomePage> {
         ];
         nums.sort();
 
-          largest = nums.last;
-          minimun = nums.first;
+        largest = nums.last;
+        minimun = nums.first;
       });
     });
-    order.where('statue', isEqualTo: 0).where('vendor_id', isEqualTo: uid).get().then((value) {
+    order
+        .where('statue', isEqualTo: 0)
+        .where('vendor_id', isEqualTo: uid)
+        .get()
+        .then((value) {
       setState(() {
         initial += 1;
         data = [
@@ -87,7 +96,11 @@ class _providerHomePageState extends State<providerHomePage> {
         minimun = nums.first;
       });
     });
-    order.where('statue', isEqualTo: 4).where('vendor_id', isEqualTo: uid).get().then((value) {
+    order
+        .where('statue', isEqualTo: 4)
+        .where('vendor_id', isEqualTo: uid)
+        .get()
+        .then((value) {
       setState(() {
         not_delivered += 1;
         data = [
@@ -108,7 +121,7 @@ class _providerHomePageState extends State<providerHomePage> {
     });
     order.where('vendor_id', isEqualTo: uid).get().then((value) {
       for (int i = 0; i < value.docs.length; i++) {
-          sales += value.docs[i].get("total");
+        sales += value.docs[i].get("total");
       }
       setState(() {
         data = [
@@ -152,32 +165,32 @@ class _providerHomePageState extends State<providerHomePage> {
     final ProgressDialog pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
     return Scaffold(
-            appBar: AppBar(
-              toolbarHeight: 100.0,
-              actions: [],
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              foregroundColor: Colors.blue,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0),
-                    child: Center(
-                      child: Image.asset(
-                        'images/photo1.png',
-                        width: 70.0,
-                        height: 70.0,
-                      ),
-                    ),
+        appBar: AppBar(
+          toolbarHeight: 100.0,
+          actions: [],
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          foregroundColor: Colors.blue,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 50.0),
+                child: Center(
+                  child: Image.asset(
+                    'images/photo1.png',
+                    width: 70.0,
+                    height: 70.0,
                   ),
-                ],
+                ),
               ),
-            ),
-            drawer: myDrawer(),
-            body: (isLoading)
-                ? Center(child: CircularProgressIndicator())
-                : SafeArea(
+            ],
+          ),
+        ),
+        drawer: myDrawer(),
+        body: (isLoading)
+            ? Center(child: CircularProgressIndicator())
+            : SafeArea(
                 child: SingleChildScrollView(
                     child: Center(
                         child: Padding(
@@ -278,7 +291,7 @@ class _providerHomePageState extends State<providerHomePage> {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 5.0),
                                           child: Text(
-                                           initial.toString(),
+                                            initial.toString(),
                                             style: TextStyle(
                                                 fontSize: 28.0,
                                                 fontFamily: 'Cairo',
@@ -412,8 +425,8 @@ class _providerHomePageState extends State<providerHomePage> {
                                               primaryXAxis: CategoryAxis(),
                                               primaryYAxis: NumericAxis(
                                                   minimum: 0,
-                                                  maximum: largest+2,
-                                                  interval: minimun/2),
+                                                  maximum: largest + 2,
+                                                  interval: minimun / 2),
                                               tooltipBehavior: _tooltip,
                                               series: <
                                                   ChartSeries<_ChartData,
