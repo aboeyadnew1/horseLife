@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/massage.dart';
 import 'package:hourse_life/old_complaints.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
@@ -159,12 +160,18 @@ class Complaints extends StatelessWidget {
                           if (txtComplainTitle.text.trim() == "" ||
                               txtComplainBody.text.trim() == "") {}
 
+                          DateTime now = DateTime.now();
+                          String date2 = now.year.toString() +"-"+
+                              now.month.toString() +"-"+
+                              now.day.toString();
+
+
                           var massage = await firestore.add(Massage(
                             massage: txtComplainTitle.text,
                             description: txtComplainBody.text,
-                            date: '',
-                            vendor_id: '',
-                            vendor_name: '',
+                            date: ''+date2,
+                            vendor_id: uid,
+                            vendor_name: uname,
                           ).toMap());
 
                           var doc = await massage.get();

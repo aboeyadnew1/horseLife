@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hourse_life/constants/const.dart';
+import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
@@ -65,7 +65,9 @@ class _LogInScreenState extends State<LogInScreen> {
                         // set userid in shared preference
                         var userDoc = data.docs.first;
                         setUserId(userDoc.id);
+
                         CacheHelper.setData(key: kUid, value: userDoc.id);
+                        CacheHelper.setData(key: kuname, value: userDoc.get("name"));
 
                         //go to home
                         Navigator.pushReplacement(

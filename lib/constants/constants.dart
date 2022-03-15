@@ -33,3 +33,7 @@ const kTotallPrice = 'TotallPrice';
 const kAddress = 'Address';
 const kProductQuantity = 'Quantity';
 const kKeepMeLoggedIn = 'KeepMeLoggedIn';
+const kUid = 'uid';
+String uid="";
+const kuname = 'uname';
+String uname="";
