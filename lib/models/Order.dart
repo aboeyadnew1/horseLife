@@ -17,6 +17,7 @@ class Order {
   String statue;
   double total;
   double rate;
+  String username;
   String phone;
 
   // 0 for creation
@@ -40,6 +41,7 @@ class Order {
     this.statue,
     this.total,
     this.rate,
+    this.username,
     this.phone,
   });
 }

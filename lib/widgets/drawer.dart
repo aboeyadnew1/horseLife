@@ -8,6 +8,7 @@ import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
 import 'package:hourse_life/pages/profile/edit_profile_data_screen.dart';
 import 'package:hourse_life/pages/profile/profile_screen.dart';
 import 'package:hourse_life/services/static_data.dart';
+import 'package:hourse_life/share/cache_helper.dart';
 
 import '../pages/Services.dart';
 
@@ -201,11 +202,14 @@ class _myDrawerState extends State<myDrawer> {
             SizedBox(height: 15.0),
             InkWell(
               onTap: () {
-                removeUserId();
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LogInScreen()),
-                    (route) => false);
+                CacheHelper.setModelData(key: kUid,data: null)
+                    .then((value) {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LogInScreen()),
+                          (route) => false);
+                });
+
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

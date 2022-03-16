@@ -31,93 +31,96 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
   Widget build(BuildContext context) {
     Store _store = Store();
 
-    UserProvider userpro = Provider.of<UserProvider>(context, listen: false);
+    return Scaffold(
+      body: StreamBuilder<QuerySnapshot>(
+          stream: _store.loadOrders(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              orders.clear();
+              for (var doc in snapshot.data.docs) {
+                Order order = Order(
+                  id: doc.get("id"),
+                  user_id: doc.get("user_id"),
+                  vendor_id: doc.get("vendor_id"),
+                  email: doc.get("email"),
+                  address: doc.get("address"),
+                  state: doc.get("state"),
+                  lat: doc.get("lat"),
+                  lng: doc.get("lng"),
+                  creation_date: doc.get("creation_date"),
+                  delivered_date: doc.get("delivered_date"),
+                  updated_date: doc.get("updated_date"),
+                  statue: doc.get("statue"),
+                  total: doc.get("total"),
+                  rate: doc.get("rate"),
+                );
 
-    String data = "";
-
-    return StreamBuilder<QuerySnapshot>(
-        stream: _store.loadOrders(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          } else {
-            orders.clear();
-            for (var doc in snapshot.data.docs) {
-              Order order = Order(
-                id: doc.get("id"),
-                user_id: doc.get("user_id"),
-                vendor_id: doc.get("vendor_id"),
-                email: doc.get("email"),
-                address: doc.get("address"),
-                state: doc.get("state"),
-                lat: doc.get("lat"),
-                lng: doc.get("lng"),
-                creation_date: doc.get("creation_date"),
-                delivered_date: doc.get("delivered_date"),
-                updated_date: doc.get("updated_date"),
-                statue: doc.get("statue"),
-                total: doc.get("total"),
-                rate: doc.get("rate"),
-              );
-
-              if (uid.id == doc.get("vendor_id")) {
-                orders.add(order);
+                if (uid.id == doc.get("vendor_id")) {
+                  orders.add(order);
+                }
               }
-            }
-            // if (doc.get("user_id") == userpro.user.id) {
-            //
-            // }
+              // if (doc.get("user_id") == userpro.user.id) {
+              //
+              // }
 
-          }
-          Scaffold(
-            body: DefaultTabController(
-              length: 3,
-              child: Scaffold(
-                  body: NestedScrollView(
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  return <Widget>[
-                    new SliverAppBar(
-                      backgroundColor: kMainColor,
-                      pinned: true,
-                      floating: true,
-                      bottom: TabBar(
-                        isScrollable: true,
-                        indicator: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            // Creates border
-                            color: Colors.white12),
-                        tabs: [
-                          Tab(
-                              child: Text(
-                            'طلبات تحت الأجراء',
-                            style: TextStyle(color: Colors.white),
-                          )),
-                          Tab(
-                              child: Text('طلبات تم توصيلها',
-                                  style: TextStyle(color: Colors.white))),
-                          Tab(
-                              child: Text(' طلبات ملغية',
-                                  style: TextStyle(color: Colors.white))),
-                        ],
+            }
+            return Scaffold(
+              body: DefaultTabController(
+                length: 3,
+                child: Scaffold(
+                    body: NestedScrollView(
+                  headerSliverBuilder:
+                      (BuildContext context, bool innerBoxIsScrolled) {
+                    return <Widget>[
+                      new SliverAppBar(
+                        backgroundColor: kMainColor,
+                        title: Text(
+                          "الطلبات",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        foregroundColor: Colors.white,
+                        pinned: true,
+                        floating: true,
+                        bottom: TabBar(
+                          isScrollable: true,
+                          indicator: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              // Creates border
+                              color: Colors.white12),
+                          tabs: [
+                            Tab(
+                                child: Text(
+                              'طلبات تحت الأجراء',
+                              style: TextStyle(color: Colors.white),
+                            )),
+                            Tab(
+                                child: Text('طلبات تم توصيلها',
+                                    style: TextStyle(color: Colors.white))),
+                            Tab(
+                                child: Text(' طلبات ملغية',
+                                    style: TextStyle(color: Colors.white))),
+                          ],
+                        ),
                       ),
-                    ),
-                  ];
-                },
-                body: TabBarView(
-                  children: <Widget>[
-                    order1(getorderbystatue("0")),
-                    order1(getorderbystatue("0")),
-                    order1(getorderbystatue("0")),
-                    // Customers_home(),
-                    // PurchaseOrders(),
-                    // UserComplaints(),
-                  ],
-                ),
-              )),
-            ),
-          );
-        });
+                    ];
+                  },
+                  body: TabBarView(
+                    children: <Widget>[
+                      order1(getorderbystatue("0")),
+                      order1(getorderbystatue("2")),
+                      order1(getorderbystatue("4")),
+                      // Customers_home(),
+                      // PurchaseOrders(),
+                      // UserComplaints(),
+                    ],
+                  ),
+                )),
+              ),
+            );
+          }),
+    );
   }
 
   List<Order> getorderbystatue(String statue) {

@@ -31,8 +31,6 @@ class _EditUserDataState extends State<EditUserData> {
 
   @override
   Widget build(BuildContext context) {
-
-
     if (uid != null) {
       name_con.text = uid.name;
       address_con.text = uid.address;
@@ -91,23 +89,25 @@ class _EditUserDataState extends State<EditUserData> {
                           ? Image.file(
                               _image,
                               fit: BoxFit.cover,
-                        width: 110,height: 110,
+                              width: 110,
+                              height: 110,
                             )
                           : uid == null
                               ? Image.asset('images/profile.png',
-                          width: 110,height: 110,
-                                  fit: BoxFit.cover)
-                              : (uid.image == null ||
-                          uid.image == "")
+                                  width: 110, height: 110, fit: BoxFit.cover)
+                              : (uid.image == null || uid.image == "")
                                   ? Image.asset('images/profile.png',
-                          width: 110,height: 110,
+                                      width: 110,
+                                      height: 110,
                                       fit: BoxFit.cover)
                                   : _image == null
                                       ? Image.network(uid.image,
-                          width: 110,height: 110,
+                                          width: 110,
+                                          height: 110,
                                           fit: BoxFit.cover)
                                       : Image.file(_image,
-                          width: 110,height: 110,
+                                          width: 110,
+                                          height: 110,
                                           fit: BoxFit.cover),
                     )),
                     Positioned(
@@ -306,7 +306,8 @@ class _EditUserDataState extends State<EditUserData> {
                                 password: pass_con.text,
                                 address: address_con.text,
                                 lat: uid.lat,
-                                long: uid.long)
+                                identity_num: uid.identity_num,
+                                lng: uid.lng)
                             .toMap(),
                         uid.id,
                         context);
