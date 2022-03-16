@@ -189,9 +189,9 @@ class Complaints extends StatelessWidget {
                                   massage: txtComplainTitle.text,
                                   description: txtComplainBody.text,
                                   date: '' + date2,
-                                  vendor_id: uid,
+                                  vendor_id: uid.id,
                                   id: now_date,
-                                  vendor_name: uname,
+                                  vendor_name: uid.name,
                                 ).toMap()).then((value){
                                   pr.hide();
                                   Navigator.push(

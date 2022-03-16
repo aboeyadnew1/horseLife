@@ -3,13 +3,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hourse_life/constants/constants.dart';
+import 'package:hourse_life/pages/Services.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
 import 'package:hourse_life/provider/UserProvider.dart';
 import 'package:hourse_life/services/static_data.dart';
 import 'package:hourse_life/share/cache_helper.dart';
 import 'package:provider/provider.dart';
-import 'data/global_data.dart';
 import 'models/user.dart';
 import 'pages/intro.dart';
 import 'pages/login_screen.dart';
@@ -19,8 +19,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await CacheHelper.init();
-   uid = CacheHelper.getData(key: kUid);
-   uname = CacheHelper.getData(key: kuname);
+  uid=CacheHelper.getModelData(key: kUid);
+
   runApp(MyApp());
 }
 
@@ -57,6 +57,7 @@ class MyApp extends StatelessWidget {
             routes: {
               LogInScreen.id: (context) => LogInScreen(),
               providerHomePage.id: (context) => providerHomePage(),
+              Services.id: (context) => Services(),
             }));
   }
 }
@@ -75,7 +76,6 @@ class _PageState extends State<Page> {
   @override
   void initState() {
     super.initState();
-    selectPage();
   }
 
   @override
@@ -83,32 +83,6 @@ class _PageState extends State<Page> {
     return Intro();
   }
 
-  Future<void> selectPage() async {
-    //Get intro state
-    bool result = await getIntro();
-    if (result == null) {
-      page = Intro();
-    } else {
-      //get user id from shared preference
-      var userId = await getUserId();
 
-      if (userId != null) {
-        bool approved = await getUser(userId);
-        setState(() {
-          page = approved ? Home() : RegistrationComplete();
-        });
-      } else {
-        page = LogInScreen();
-      }
-    }
-  }
 
-  Future<bool> getUser(userId) async {
-    var firestore = await FirebaseFirestore.instance.collection('users');
-    var doc = await firestore.doc(userId).get();
-    var user = UserModel.fromMap(doc.data());
-    GlobalData.user = user;
-    GlobalData.userId = userId;
-    return user.approved;
-  }
 }

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:hourse_life/home_cubit/home_cubit.dart';
+import 'package:hourse_life/constants/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -39,7 +39,7 @@ class _ProfilePicState extends State<ProfilePic> {
         CircleAvatar(
           backgroundImage: _uploadedFileURL == null
               ? AssetImage('images/profile.png')
-              : NetworkImage(HomeCubit.get(context).userModel.image),
+              : NetworkImage(uid.image),
         ),
         Positioned(
           right: -12,

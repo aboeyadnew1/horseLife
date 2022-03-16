@@ -7,7 +7,8 @@ import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
 import 'package:hourse_life/pages/profile/edit_profile_data_screen.dart';
 import 'package:hourse_life/pages/profile/profile_screen.dart';
 import 'package:hourse_life/services/static_data.dart';
-import 'package:hourse_life/pages/products.dart';
+
+import '../pages/Services.dart';
 
 class myDrawer extends StatefulWidget {
   @override
@@ -100,7 +101,7 @@ class _myDrawerState extends State<myDrawer> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Products(),
+                        builder: (context) => Services(),
                       ));
                 },
               ),

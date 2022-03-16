@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hourse_life/models/user.dart';
 
 //const kMainColor = Color(0xFF005eaa);
 //const kSecondayColor = Color(0xFF408b88);
@@ -34,6 +35,4 @@ const kAddress = 'Address';
 const kProductQuantity = 'Quantity';
 const kKeepMeLoggedIn = 'KeepMeLoggedIn';
 const kUid = 'uid';
-String uid="";
-const kuname = 'uname';
-String uname="";
+ User uid;

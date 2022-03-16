@@ -24,7 +24,7 @@ class _OldComplaintsState extends State<OldComplaints> {
   }
 
   Future<void> getData() async {
-    oldComplaints = await firebase.where('vendor_id', isEqualTo: uid).get();
+    oldComplaints = await firebase.where('vendor_id', isEqualTo: uid.id).get();
     setState(() {});
   }
 

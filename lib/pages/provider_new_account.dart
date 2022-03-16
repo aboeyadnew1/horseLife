@@ -116,7 +116,7 @@ class _providerNewAccountState extends State<providerNewAccount> {
                         backgroundColor: Color.fromRGBO(100, 192, 229, 1)),
                     onPressed: () async {
                       {
-                        var user = await firestore.add(UserModel(
+                        var user = await firestore.add(User(
                                 name: txtName.text,
                                 phone: txtPhone.text,
                                 email: txtEmail.text,
@@ -125,8 +125,8 @@ class _providerNewAccountState extends State<providerNewAccount> {
                                 personalIdentity: txtPersonalIdentity.text,
                                 address: txtAddress.text,
                                 job: txtJob.text,
-                                lat: '0',
-                                long: '0')
+                                lat: 0.0,
+                                long: 0.0)
                             .toMap());
 
                         var doc = await user.get();

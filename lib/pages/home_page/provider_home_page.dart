@@ -51,7 +51,7 @@ class _providerHomePageState extends State<providerHomePage> {
 
     order
         .where('statue', isEqualTo: 2)
-        .where('vendor_id', isEqualTo: uid)
+        .where('vendor_id', isEqualTo: uid.id)
         .get()
         .then((value) {
       setState(() {
@@ -75,7 +75,7 @@ class _providerHomePageState extends State<providerHomePage> {
     });
     order
         .where('statue', isEqualTo: 0)
-        .where('vendor_id', isEqualTo: uid)
+        .where('vendor_id', isEqualTo: uid.id)
         .get()
         .then((value) {
       setState(() {
@@ -98,7 +98,7 @@ class _providerHomePageState extends State<providerHomePage> {
     });
     order
         .where('statue', isEqualTo: 4)
-        .where('vendor_id', isEqualTo: uid)
+        .where('vendor_id', isEqualTo: uid.id)
         .get()
         .then((value) {
       setState(() {
@@ -119,7 +119,7 @@ class _providerHomePageState extends State<providerHomePage> {
         minimun = nums.first;
       });
     });
-    order.where('vendor_id', isEqualTo: uid).get().then((value) {
+    order.where('vendor_id', isEqualTo: uid.id).get().then((value) {
       for (int i = 0; i < value.docs.length; i++) {
         sales += value.docs[i].get("total");
       }

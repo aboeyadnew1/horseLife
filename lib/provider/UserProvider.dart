@@ -1,21 +1,20 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hourse_life/data/global_data.dart';
 import 'package:hourse_life/models/user.dart';
 
 class UserProvider extends ChangeNotifier {
-  UserModel user;
+  User user;
 
-  addUser(UserModel user) {
+  addUser(User user) {
     this.user = user;
     notifyListeners();
   }
 
-  deleteUser(UserModel user) {
+  deleteUser(User user) {
     this.user = null;
     notifyListeners();
   }
 
-  UserModel GetUser() {
+  User GetUser() {
     return user;
   }
 }

@@ -13,6 +13,7 @@ import 'package:hourse_life/share/cache_helper.dart';
 
 class LogInScreen extends StatefulWidget {
   static String id = 'login';
+
   @override
   _LogInScreenState createState() => _LogInScreenState();
 }
@@ -65,15 +66,23 @@ class _LogInScreenState extends State<LogInScreen> {
                         // set userid in shared preference
                         var userDoc = data.docs.first;
                         setUserId(userDoc.id);
+                        User user = User(
+                            id: data.docs.first.get("id"),
+                            name: data.docs.first.get("name"),
+                            image: data.docs.first.get("image"),
+                            personalIdentity: data.docs.first.get("recordNumber"),
+                            lat: data.docs.first.get("lat"),
+                            recordNumber: data.docs.first.get("tax_num"),
+                            long: data.docs.first.get("lng"),
+                            phone: data.docs.first.get("phone"));
 
-                        CacheHelper.setData(key: kUid, value: userDoc.id).then((value) {
-                          CacheHelper.setData(key: kuname, value: userDoc.get("name")).then((value){
-                            print( userDoc.get("name"));
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => providerHomePage()));
-                          });
+                        CacheHelper.setModelData(key: kUid,data: user)
+                            .then((value) {
+                          print(userDoc.get("name"));
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => providerHomePage()));
                         });
                       } else {
                         showDialog(

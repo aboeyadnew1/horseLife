@@ -53,6 +53,9 @@ class Store {
   Stream<QuerySnapshot> loadOrders() {
     return _firestore.collection("Orders").snapshots();
   }
+  Stream<QuerySnapshot> loadServices() {
+    return _firestore.collection("service").snapshots();
+  }
 
   Stream<QuerySnapshot> loadOrderDetails(String id) {
     return _firestore

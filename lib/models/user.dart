@@ -6,13 +6,14 @@ class User {
   String name;
   String phone;
   String email;
+  String image;
   String password;
   String recordNumber;
   String personalIdentity;
   String address;
   String job;
-  String lat;
-  String long;
+  double lat;
+  double long;
   String mainServiceType;
   String subServiceType;
   bool approved = false;
@@ -28,6 +29,7 @@ class User {
         this.personalIdentity,
         this.address,
         this.job,
+        this.image,
         this.lat,
         this.long});
 
@@ -35,6 +37,7 @@ class User {
     Map<String, dynamic> map = {
       'name': this.name,
       'phone': this.phone,
+      'id': this.id,
       'email': this.email,
       'password': this.password,
       'recordNumber': this.recordNumber,
@@ -44,6 +47,7 @@ class User {
       'lat': this.lat,
       'long': this.long,
       'mainServiceType': this.mainServiceType,
+      'image': this.image,
       'subServiceType': this.subServiceType,
       'approved': this.approved,
       'visable': this.visable,
@@ -61,11 +65,13 @@ class User {
     this.personalIdentity = json['personalIdentity'];
     this.address = json['address'];
     this.job = json['job'];
+    this.id = json['id'];
     this.lat = json['lat'];
     this.long = json['long'];
     this.mainServiceType = json['mainServiceType'];
     this.subServiceType = json['subServiceType'];
     this.approved = json['approved'];
     this.visable = json['visable'];
+    this.image = json['image'];
   }
 }
