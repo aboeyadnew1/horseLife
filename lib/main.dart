@@ -18,10 +18,11 @@ import 'pages/registration_done.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await CacheHelper.init();
-  uid=CacheHelper.getModelData(key: kUid);
+  CacheHelper.getModelData(key: kUid).then((value){
+    uid=value;
+    runApp(MyApp());
+  });
 
-  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
