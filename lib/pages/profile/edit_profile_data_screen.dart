@@ -306,6 +306,7 @@ class _EditUserDataState extends State<EditUserData> {
                                 password: pass_con.text,
                                 address: address_con.text,
                                 lat: uid.lat,
+                                personalIdentity: uid.personalIdentity,
                                 long: uid.long)
                             .toMap(),
                         uid.id,

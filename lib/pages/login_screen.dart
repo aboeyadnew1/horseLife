@@ -78,7 +78,9 @@ class _LogInScreenState extends State<LogInScreen> {
                                 data.docs.first.get("recordNumber"),
                             lat: data.docs.first.get("lat"),
                             recordNumber: data.docs.first.get("tax_num"),
-                            long: data.docs.first.get("lng"),
+                            long: data.docs.first.get("long"),
+                            address: data.docs.first.get("address"),
+                            email: data.docs.first.get("email"),
                             phone: data.docs.first.get("phone"));
 
                         CacheHelper.setModelData(key: kUid, data: user)
