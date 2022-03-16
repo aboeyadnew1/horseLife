@@ -99,7 +99,7 @@ class Store {
     await pr.show();
 
     _firestore
-        .collection("Customers")
+        .collection("Vendors")
         .doc(documentId)
         .update(data)
         .whenComplete(() async {

@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/pages/complaints%20_page.dart';
 import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
@@ -25,13 +26,14 @@ class _myDrawerState extends State<myDrawer> {
           children: [
             SizedBox(
               height: 30.0,
-            ),
+            ),uid.image!=null?Image.network(uid.image, width: 100,
+              height: 50.0,):
             Image.asset(
               'images/profile.png',
               width: 100,
               height: 50.0,
             ),
-            Center(child: Text('عبدالله خالد')),
+            Center(child: Text(uid.name!=null?uid.name:" مستخدم"),) ,
             SizedBox(
               height: 15.0,
             ),
