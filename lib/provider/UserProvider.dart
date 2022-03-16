@@ -3,19 +3,19 @@ import 'package:hourse_life/data/global_data.dart';
 import 'package:hourse_life/models/user.dart';
 
 class UserProvider extends ChangeNotifier {
-  User user;
+  UserModel user;
 
-  addUser(User user) {
+  addUser(UserModel user) {
     this.user = user;
     notifyListeners();
   }
 
-  deleteUser(User user) {
+  deleteUser(UserModel user) {
     this.user = null;
     notifyListeners();
   }
 
-  User GetUser() {
+  UserModel GetUser() {
     return user;
   }
 }

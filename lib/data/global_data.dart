@@ -1,6 +1,6 @@
 import 'package:hourse_life/models/user.dart';
 
 class GlobalData {
-  static User user;
+  static UserModel user;
   static String userId;
 }

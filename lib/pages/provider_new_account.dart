@@ -88,7 +88,9 @@ class _providerNewAccountState extends State<providerNewAccount> {
 
               //المفروض دروب داون
               _builddropDown(items, "اختار الخدمة الرئيسية", selectedValue),
-              SizedBox(height: 10.0,),
+              SizedBox(
+                height: 10.0,
+              ),
               _builddropDown(items, "اختار الخدمة الفرعية", selectedValue),
 
               //inputItem('نوع الخدمة الرئيسية'),
@@ -114,7 +116,7 @@ class _providerNewAccountState extends State<providerNewAccount> {
                         backgroundColor: Color.fromRGBO(100, 192, 229, 1)),
                     onPressed: () async {
                       {
-                        var user = await firestore.add(User(
+                        var user = await firestore.add(UserModel(
                                 name: txtName.text,
                                 phone: txtPhone.text,
                                 email: txtEmail.text,
@@ -198,13 +200,12 @@ class _providerNewAccountState extends State<providerNewAccount> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Container(
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15),
-          
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
             border: Border.all(
-              
-          color: Colors.black38,
-          width: 1,
-        )),
+              color: Colors.black38,
+              width: 1,
+            )),
         child: SearchChoices.single(
           underline: SizedBox(),
           items: items,

@@ -15,6 +15,7 @@ import 'home_page/provider_home_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
 class newService extends StatefulWidget {
   @override
   _newServiceState createState() => _newServiceState();
@@ -517,21 +518,23 @@ class _newServiceState extends State<newService> {
                                   child: ElevatedButton(
                                     onPressed: () async {
                                       getUserId().then((value) async {
-                                        var serviceModel = Service(
+                                        var serviceModel = ServiceModel(
                                             name: txtName.text,
                                             description: textDescription.text,
-                                            quantity: double.parse(textQuantity.text),
-                                            deliveryMethod: textDeliveryMethod.text,
+                                            quantity:
+                                                double.parse(textQuantity.text),
+                                            deliveryMethod:
+                                                textDeliveryMethod.text,
                                             deliveryTime: textDeliveryTime.text,
                                             price: double.parse(textPrice.text),
                                             image: _uploadedFileURL,
                                             mainServiceType: getmainid(
-                                                selectedmainValue, mainservices),
+                                                selectedmainValue,
+                                                mainservices),
                                             subServiceType: getsubid(
                                                 selectedsubValue, subservices),
                                             rate: 0,
-                                            vendor_id: value
-                                        );
+                                            vendor_id: value);
                                         var service = await firestore
                                             .add(serviceModel.toMap());
 
@@ -548,9 +551,6 @@ class _newServiceState extends State<newService> {
                                                 builder: (builder) =>
                                                     providerHomePage()));
                                       });
-
-
-
                                     },
                                     child: Text(
                                       'إضافة الخدمة',
