@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:hourse_life/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';

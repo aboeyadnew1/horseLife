@@ -10,6 +10,7 @@ import 'package:hourse_life/pages/sign_in_page.dart';
 import 'package:hourse_life/services/api_provider.dart';
 import 'package:hourse_life/services/static_data.dart';
 import 'package:hourse_life/share/cache_helper.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class LogInScreen extends StatefulWidget {
   static String id = 'login';
@@ -28,6 +29,8 @@ class _LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ProgressDialog pr = ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -57,6 +60,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20.0),
                   child: ElevatedButton(
                     onPressed: () async {
+                      pr.show();
                       var data = await firestore
                           .where('phone', isEqualTo: txtPhone.text)
                           .where('password', isEqualTo: txtPassword.text)
@@ -70,21 +74,24 @@ class _LogInScreenState extends State<LogInScreen> {
                             id: data.docs.first.get("id"),
                             name: data.docs.first.get("name"),
                             image: data.docs.first.get("image"),
-                            personalIdentity: data.docs.first.get("recordNumber"),
+                            personalIdentity:
+                                data.docs.first.get("recordNumber"),
                             lat: data.docs.first.get("lat"),
                             recordNumber: data.docs.first.get("tax_num"),
                             long: data.docs.first.get("lng"),
                             phone: data.docs.first.get("phone"));
 
-                        CacheHelper.setModelData(key: kUid,data: user)
+                        CacheHelper.setModelData(key: kUid, data: user)
                             .then((value) {
                           print(userDoc.get("name"));
+                          pr.hide();
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => providerHomePage()));
                         });
                       } else {
+                        pr.hide();
                         showDialog(
                             context: context,
                             builder: (ctx) {
@@ -102,7 +109,10 @@ class _LogInScreenState extends State<LogInScreen> {
                             });
                       }
                     },
-                    child: Text('ابدء الأن '),
+                    child: Text(
+                      'ابدء الأن ',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromRGBO(72, 175, 218, 1),
                       shape: RoundedRectangleBorder(
@@ -125,7 +135,10 @@ class _LogInScreenState extends State<LogInScreen> {
                               MaterialPageRoute(
                                   builder: (context) => providerNewAccount()));
                         },
-                        child: Text('ليس لديك حساب ! سجل الآن '),
+                        child: Text(
+                          'ليس لديك حساب ! سجل الآن ',
+                          style: TextStyle(color: Colors.white),
+                        ),
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(72, 175, 218, 1),
                           shape: RoundedRectangleBorder(

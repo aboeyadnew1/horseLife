@@ -25,9 +25,9 @@ class Complaints extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           automaticallyImplyLeading: false,
-          toolbarHeight: 149,
+          toolbarHeight: 100,
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back_ios),
+            icon: new Icon(Icons.arrow_back_ios),color: Colors.white,
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -155,7 +155,7 @@ class Complaints extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: ElevatedButton(
-                      child: Text('أرسل'),
+                      child: Text('أرسل',style: TextStyle(color: Colors.white),),
                       style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(72, 175, 218, 1),
                         shape: RoundedRectangleBorder(
