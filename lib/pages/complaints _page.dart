@@ -4,7 +4,6 @@ import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/massage.dart';
 import 'package:hourse_life/old_complaints.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
-import 'package:hourse_life/services/static_data.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
 class Complaints extends StatelessWidget {
@@ -15,11 +14,8 @@ class Complaints extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final ProgressDialog pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
-
-
 
     return Scaffold(
         appBar: AppBar(
@@ -27,7 +23,8 @@ class Complaints extends StatelessWidget {
           automaticallyImplyLeading: false,
           toolbarHeight: 100,
           leading: new IconButton(
-            icon: new Icon(Icons.arrow_back_ios),color: Colors.white,
+            icon: new Icon(Icons.arrow_back_ios),
+            color: Colors.white,
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -155,7 +152,10 @@ class Complaints extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: ElevatedButton(
-                      child: Text('أرسل',style: TextStyle(color: Colors.white),),
+                      child: Text(
+                        'أرسل',
+                        style: TextStyle(color: Colors.white),
+                      ),
                       style: ElevatedButton.styleFrom(
                         primary: Color.fromRGBO(72, 175, 218, 1),
                         shape: RoundedRectangleBorder(
@@ -185,22 +185,25 @@ class Complaints extends StatelessWidget {
                                 now.millisecond.toString() +
                                 now.microsecond.toString();
 
-                            await firestore.doc(now_date).set(Massage(
+                            await firestore
+                                .doc(now_date)
+                                .set(Massage(
                                   massage: txtComplainTitle.text,
                                   description: txtComplainBody.text,
                                   date: '' + date2,
                                   vendor_id: uid.id,
                                   id: now_date,
                                   vendor_name: uid.name,
-                                ).toMap()).then((value){
-                                  pr.hide();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => providerHomePage(),
-                                    ),
-                                  );
-                            }).onError((error, stackTrace){
+                                ).toMap())
+                                .then((value) {
+                              pr.hide();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => providerHomePage(),
+                                ),
+                              );
+                            }).onError((error, stackTrace) {
                               pr.hide();
                               Navigator.push(
                                 context,
@@ -209,8 +212,6 @@ class Complaints extends StatelessWidget {
                                 ),
                               );
                             });
-
-
                           }
                         }
                       },

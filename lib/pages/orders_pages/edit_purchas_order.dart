@@ -12,13 +12,11 @@ class _EditPurchaseOrdersState extends State<EditPurchaseOrders> {
 
   @override
   Widget build(BuildContext context) {
-
-    List<TimeLineModel> data=[];
-    data.add(new TimeLineModel(id: "1",name: "تحت الأجراء"));
-    data.add(new TimeLineModel(id: "1",name: "جارى الشحن"));
-    data.add(new TimeLineModel(id: "0",name: "تم الشحن"));
-    data.add(new TimeLineModel(id: "0",name: "تم التوصيل"));
-
+    List<TimeLineModel> data = [];
+    data.add(new TimeLineModel(id: "1", name: "تحت الأجراء"));
+    data.add(new TimeLineModel(id: "1", name: "جارى الشحن"));
+    data.add(new TimeLineModel(id: "0", name: "تم الشحن"));
+    data.add(new TimeLineModel(id: "0", name: "تم التوصيل"));
 
     return Scaffold(
       appBar: AppBar(
@@ -99,7 +97,7 @@ class _EditPurchaseOrdersState extends State<EditPurchaseOrders> {
                                   padding: const EdgeInsets.only(right: 10.0),
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'رقم الطلب',
@@ -203,45 +201,46 @@ class _EditPurchaseOrdersState extends State<EditPurchaseOrders> {
                                           context: context,
                                           builder: (context) =>
                                               SingleChildScrollView(
-                                                controller:
+                                            controller:
                                                 ModalScrollController.of(
                                                     context),
-                                                child: Container(
-                                                    width: MediaQuery.of(context)
-                                                        .size
-                                                        .width,
-                                                    height: MediaQuery.of(context)
+                                            child: Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                height: MediaQuery.of(context)
                                                         .size
                                                         .height /
-                                                        2.5,
-                                                    padding: EdgeInsets.symmetric(
-                                                        horizontal: 15),
-                                                    child: Column(
-                                                      children: [
-                                                        Center(
-                                                          child: Text(
-                                                            'تتبع الطلب  ',
-                                                            style: TextStyle(
-                                                                fontSize: 18.0,
-                                                                fontWeight:
+                                                    2.5,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 15),
+                                                child: Column(
+                                                  children: [
+                                                    Center(
+                                                      child: Text(
+                                                        'تتبع الطلب  ',
+                                                        style: TextStyle(
+                                                            fontSize: 18.0,
+                                                            fontWeight:
                                                                 FontWeight
                                                                     .w400),
-                                                          ),
-                                                        ),
-                                                        Container(
-
-                                                          child: TimeLine(data: data,),
-                                                        ),
-                                                      ],
-                                                    )),
-                                              ),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: TimeLine(
+                                                        data: data,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )),
+                                          ),
                                         );
                                       },
                                       style: ButtonStyle(
                                         backgroundColor:
-                                        MaterialStateProperty.all(
-                                            Color.fromRGBO(
-                                                72, 175, 218, 1)),
+                                            MaterialStateProperty.all(
+                                                Color.fromRGBO(
+                                                    72, 175, 218, 1)),
                                       ),
                                     ),
                                   ),
@@ -255,14 +254,14 @@ class _EditPurchaseOrdersState extends State<EditPurchaseOrders> {
                                         style: TextStyle(
                                             fontSize: 16.0,
                                             color:
-                                            Color.fromRGBO(72, 175, 218, 1),
+                                                Color.fromRGBO(72, 175, 218, 1),
                                             fontWeight: FontWeight.w400),
                                       ),
                                       onPressed: () {},
                                       style: ButtonStyle(
                                         backgroundColor:
-                                        MaterialStateProperty.all(
-                                            Colors.white),
+                                            MaterialStateProperty.all(
+                                                Colors.white),
                                       ),
                                     ),
                                   ),
@@ -286,8 +285,7 @@ class _EditPurchaseOrdersState extends State<EditPurchaseOrders> {
 
 class TimeLine extends StatefulWidget {
   final List<TimeLineModel> data;
-  TimeLine({Key key,@required this.data});
-
+  TimeLine({Key key, @required this.data});
 
   @override
   _TimeLineState createState() => _TimeLineState(data);
@@ -300,50 +298,51 @@ class _TimeLineState extends State<TimeLine> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height/3,
+      height: MediaQuery.of(context).size.height / 3,
       child: ListView.builder(
           itemCount: data.length,
           itemBuilder: (context, index) {
             return Container(
                 child: Row(
+              children: [
+                Column(
                   children: [
-                    Column(
-                      children: [
-                        Container(
-                          width: 2,
-                          height: 10,
-                          color: Colors.black26,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              color:  data[index].id=="0"?Colors.black26:Colors.green,
-                              borderRadius: BorderRadius.circular(50)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Icon(
-                              data[index].id=="0"?
-                              Icons.circle
-                                  :Icons.check_circle,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 2,
-                          height: 10,
-                          color: Colors.black26,
-                        ),
-                      ],
+                    Container(
+                      width: 2,
+                      height: 10,
+                      color: Colors.black26,
                     ),
                     Container(
-
-                      child:Text(data[index].name),
-                    )
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          color: data[index].id == "0"
+                              ? Colors.black26
+                              : Colors.green,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Icon(
+                          data[index].id == "0"
+                              ? Icons.circle
+                              : Icons.check_circle,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 2,
+                      height: 10,
+                      color: Colors.black26,
+                    ),
                   ],
-                ));
+                ),
+                Container(
+                  child: Text(data[index].name),
+                )
+              ],
+            ));
           }),
     );
   }

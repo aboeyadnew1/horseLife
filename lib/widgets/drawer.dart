@@ -7,7 +7,6 @@ import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/pages/orders_pages/purchaseorders.dart';
 import 'package:hourse_life/pages/profile/edit_profile_data_screen.dart';
 import 'package:hourse_life/pages/profile/profile_screen.dart';
-import 'package:hourse_life/services/static_data.dart';
 import 'package:hourse_life/share/cache_helper.dart';
 
 import '../pages/Services.dart';
@@ -27,19 +26,25 @@ class _myDrawerState extends State<myDrawer> {
           children: [
             SizedBox(
               height: 30.0,
-            ),uid.image!=null?Image.network(uid.image, width: 100,
-              height: 50.0,):
-            Image.asset(
-              'images/profile.png',
-              width: 100,
-              height: 50.0,
             ),
-            Center(child: Text(uid.name!=null?uid.name:" مستخدم"),) ,
+            uid.image != null
+                ? Image.network(
+                    uid.image,
+                    width: 100,
+                    height: 50.0,
+                  )
+                : Image.asset(
+                    'images/profile.png',
+                    width: 100,
+                    height: 50.0,
+                  ),
+            Center(
+              child: Text(uid.name != null ? uid.name : " مستخدم"),
+            ),
             SizedBox(
               height: 15.0,
             ),
             SizedBox(height: 15.0),
-
             SizedBox(height: 15.0),
             Column(children: [
               InkWell(
@@ -189,12 +194,9 @@ class _myDrawerState extends State<myDrawer> {
                 },
               ),
             ),
-
             SizedBox(
               height: 15.0,
             ),
-
-
             Divider(
               height: 1.0,
               color: Colors.blue,
@@ -202,14 +204,12 @@ class _myDrawerState extends State<myDrawer> {
             SizedBox(height: 15.0),
             InkWell(
               onTap: () {
-                CacheHelper.setModelData(key: kUid,data: null)
-                    .then((value) {
+                CacheHelper.setModelData(key: kUid, data: null).then((value) {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => LogInScreen()),
-                          (route) => false);
+                      (route) => false);
                 });
-
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

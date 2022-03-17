@@ -7,7 +7,6 @@ import 'package:hourse_life/pages/Services.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
 import 'package:hourse_life/provider/UserProvider.dart';
-import 'package:hourse_life/services/static_data.dart';
 import 'package:hourse_life/share/cache_helper.dart';
 import 'package:provider/provider.dart';
 import 'models/user.dart';
@@ -18,17 +17,15 @@ import 'pages/registration_done.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  CacheHelper.getModelData(key: kUid).then((value){
-    uid=value;
+  CacheHelper.getModelData(key: kUid).then((value) {
+    uid = value;
     runApp(MyApp());
   });
-
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<UserProvider>(
@@ -83,7 +80,4 @@ class _PageState extends State<Page> {
   Widget build(BuildContext context) {
     return Intro();
   }
-
-
-
 }
