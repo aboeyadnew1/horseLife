@@ -8,6 +8,10 @@
         android:label="hourse_life"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyC0H1GqNgiWWS8iN3EI1BTuGiUezyWLxK0"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -34,5 +38,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
 </manifest>

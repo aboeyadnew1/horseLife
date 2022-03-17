@@ -1,6 +1,8 @@
 // ignore_for_file: unused_import, camel_case_types, use_key_in_widget_constructors
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hourse_life/map/map_page.dart';
 import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/services/static_data.dart';
@@ -18,145 +20,194 @@ class _providerNewAccountState extends State<providerNewAccount> {
   var txtPhone = TextEditingController();
   var txtEmail = TextEditingController();
   var txtPassword = TextEditingController();
-  var txtRecordNumber = TextEditingController();
-  var txtPersonalIdentity = TextEditingController();
+  var tax_num = TextEditingController();
+  var txtIdentity_num = TextEditingController();
   var txtAddress = TextEditingController();
   var txtJob = TextEditingController();
+  var lat;
+  var lng;
 
-  var firestore = FirebaseFirestore.instance.collection('Vendors');
-  String selectedValue = "الاول";
+  var vendorCollection = FirebaseFirestore.instance.collection('Vendors');
 
-  final List<DropdownMenuItem> items = [
-    new DropdownMenuItem(child: Text("طبية"))
-  ];
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              // ignore: prefer_const_constructors
-              SizedBox(
-                height: 20.0,
-              ),
-              Image.asset(
-                'images/photo1.png',
-                width: 112,
-                height: 125,
-              ),
-              Text(
-                'انشاء حساب جديد',
-                style: TextStyle(
-                    fontFamily: 'Cairo',
-                    color: Color.fromRGBO(72, 175, 218, 1),
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold),
-              ),
-
-              inputItem('الاسم', txtName),
-              inputItem('رقم الجوال', txtPhone),
-              inputItem('البريد الالكتروني', txtEmail),
-              inputItem('كلمة المرور', txtPassword),
-              inputItem('رقم السجل', txtRecordNumber),
-              inputItem('رقم الهوية', txtPersonalIdentity),
-              inputItem('العنوان', txtAddress),
-              SizedBox(
-                height: 20.0,
-              ),
-              inputItem('الوظيفة', txtJob),
-              SizedBox(
-                height: 10.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('اضافة الموقع من على الخريطة'),
-                    InkWell(
-                      child: Icon(Icons.add),
-                      onTap: () {},
-                    ),
-                  ],
+    return Form(
+      key: _formKey,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                // ignore: prefer_const_constructors
+                SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
+                Image.asset(
+                  'images/photo1.png',
+                  width: 112,
+                  height: 125,
+                ),
+                Text(
+                  'انشاء حساب جديد',
+                  style: TextStyle(
+                      fontFamily: 'Cairo',
+                      color: Color.fromRGBO(72, 175, 218, 1),
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold),
+                ),
 
-              //المفروض دروب داون
-              _builddropDown(items, "اختار الخدمة الرئيسية", selectedValue),
-              SizedBox(
-                height: 10.0,
-              ),
-              _builddropDown(items, "اختار الخدمة الفرعية", selectedValue),
+                inputItem('الاسم', txtName, "برجاء ادخال الاسم"),
+                inputItem('رقم الجوال', txtPhone, "برجاء ادخال رقم الجوال"),
+                inputItem('البريد الالكتروني', txtEmail,
+                    "برجاء ادخال البريد الالكتروني"),
+                inputItem(
+                    'كلمة المرور', txtPassword, "برجاء ادخال كلمة المرور"),
+                inputItem('رقم السجل', tax_num, "برجاء ادخال رقم السجل"),
+                inputItem(
+                    'رقم الهوية', txtIdentity_num, "برجاء ادخال رقم الهوية"),
+                inputItem('العنوان', txtAddress, "برجاء ادخال العنوان"),
+                SizedBox(
+                  height: 20.0,
+                ),
+                inputItem('الوظيفة', txtJob, "برجاء ادخال الوظيفة"),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('اضافة الموقع من على الخريطة'),
+                      InkWell(
+                        child: Icon(Icons.add),
+                        onTap: () {
+                          Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (ctx) => MapPage()))
+                              .then((position) {
+                            if (position != null) {
+                              lat = position.latitude;
+                              lng = position.longitude;
+                            }
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
 
-              //inputItem('نوع الخدمة الرئيسية'),
-              SizedBox(
-                height: 10.0,
-              ),
-              //inputItem('نوع الخدمة الفرعية'), // هنا كمان والنبي بس مش عارف اعمله
-              SizedBox(
-                height: 10.0,
-              ),
-              // Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: SizedBox(
-                  width: 320,
-                  height: 50,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        primary: Theme.of(context).primaryColorDark,
-                        backgroundColor: Color.fromRGBO(100, 192, 229, 1)),
-                    onPressed: () async {
-                      {
-                        var user = await firestore.add(User(
-                                name: txtName.text,
-                                phone: txtPhone.text,
-                                email: txtEmail.text,
-                                password: txtPassword.text,
-                                recordNumber: txtRecordNumber.text,
-                                personalIdentity: txtPersonalIdentity.text,
-                                address: txtAddress.text,
-                                job: txtJob.text,
-                                lat: 0.0,
-                                long: 0.0)
-                            .toMap());
+                SizedBox(
+                  height: 10.0,
+                ),
 
-                        var doc = await user.get();
-                        setUserId(doc.id);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegistrationComplete(),
+                SizedBox(
+                  height: 10.0,
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                // Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: SizedBox(
+                    width: 320,
+                    height: 50,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                        );
-                      }
-                    },
-                    child: Text(
-                      'تسجيل',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontFamily: 'Cairo'),
+                          primary: Theme.of(context).primaryColorDark,
+                          backgroundColor: Color.fromRGBO(100, 192, 229, 1)),
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          //validation on mail exists
+
+                          var obj = await vendorCollection
+                              .where('email', isEqualTo: txtEmail.text)
+                              .get();
+
+                          if (obj.size > 0) {
+                            showDialog(
+                                context: context,
+                                builder: (ctx) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        "هذا البريد الإلكتروني مستخدم من قبل !"),
+                                    actions: [
+                                      FlatButton(
+                                          onPressed: () {
+                                            Navigator.of(context,
+                                                    rootNavigator: false)
+                                                .pop('اغلاق');
+                                          },
+                                          child: Text('موافق')),
+                                    ],
+                                  );
+                                });
+                          } else {
+                            DateTime now = DateTime.now();
+                            String now_date = now.year.toString() +
+                                now.month.toString() +
+                                now.day.toString() +
+                                now.hour.toString() +
+                                now.minute.toString() +
+                                now.second.toString() +
+                                now.millisecond.toString() +
+                                now.microsecond.toString();
+
+                            var user = await vendorCollection.doc(now_date).set(
+                                User(
+                                        id: now_date,
+                                        name: txtName.text,
+                                        phone: txtPhone.text,
+                                        email: txtEmail.text,
+                                        password: txtPassword.text,
+                                        tax_num: tax_num.text,
+                                        identity_num: txtIdentity_num.text,
+                                        address: txtAddress.text,
+                                        job: txtJob.text,
+                                        lat: lat,
+                                        lng: lng,
+                                        image: '')
+                                    .toMap());
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegistrationComplete(),
+                              ),
+                            );
+                          }
+                        }
+                      },
+                      child: Text(
+                        'تسجيل',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'Cairo'),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget inputItem(String text, TextEditingController controller,
+  Widget inputItem(
+      String text, TextEditingController controller, String validationMessage,
       {bool isPassword = false}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 18, vertical: 4),
@@ -170,7 +221,15 @@ class _providerNewAccountState extends State<providerNewAccount> {
               style: TextStyle(fontFamily: 'Cairo', fontSize: 18.0),
             ),
           ),
-          TextField(
+          TextFormField(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return validationMessage;
+              } else if (value.length < 3) {
+                return "لا يمكن ادخال اقل من 3 حروف";
+              }
+              return null;
+            },
             textAlign: TextAlign.center,
             controller: controller,
             decoration: InputDecoration(
@@ -194,54 +253,8 @@ class _providerNewAccountState extends State<providerNewAccount> {
       ),
     );
   }
-
-  Widget _builddropDown(
-      List<DropdownMenuItem> items, String hint, String Selected) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(
-              color: Colors.black38,
-              width: 1,
-            )),
-        child: SearchChoices.single(
-          underline: SizedBox(),
-          items: items,
-          value: Selected,
-          hint: hint,
-          searchHint: "اختار الخدمة الرئيسية",
-          onChanged: (value) {
-            setState(() {
-              var selectedValue = value;
-            });
-          },
-          closeButton: "الغاء",
-          doneButton: "اختيار",
-          displayItem: (item, selected) {
-            return (Row(children: [
-              selected
-                  ? Icon(
-                      Icons.radio_button_checked,
-                      color: Colors.grey,
-                    )
-                  : Icon(
-                      Icons.radio_button_unchecked,
-                      color: Colors.grey,
-                    ),
-              SizedBox(width: 7),
-              Expanded(
-                child: item,
-              ),
-            ]));
-          },
-          isExpanded: true,
-        ),
-      ),
-    );
-  }
 }
+
 //  decoration: InputDecoration(
 //               suffixIcon: isPassword
 //                   ? InkWell(

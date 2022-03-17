@@ -74,11 +74,10 @@ class _LogInScreenState extends State<LogInScreen> {
                             id: data.docs.first.get("id"),
                             name: data.docs.first.get("name"),
                             image: data.docs.first.get("image"),
-                            personalIdentity:
-                                data.docs.first.get("recordNumber"),
+                            identity_num: data.docs.first.get("identity_num"),
                             lat: data.docs.first.get("lat"),
-                            recordNumber: data.docs.first.get("tax_num"),
-                            long: data.docs.first.get("long"),
+                            tax_num: data.docs.first.get("tax_num"),
+                            lng: data.docs.first.get("lng"),
                             address: data.docs.first.get("address"),
                             email: data.docs.first.get("email"),
                             phone: data.docs.first.get("phone"));

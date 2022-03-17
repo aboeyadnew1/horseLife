@@ -1,6 +1,14 @@
 // ignore_for_file: unnecessary_this
 
 class User {
+  // 'number': customer.number,
+  // 'service': customer.service,
+
+  // 'total': 0,
+  // 'identity_num': customer.identity_num,
+
+  // 'name': customer.name,
+  //
 
   String id;
   String name;
@@ -8,30 +16,29 @@ class User {
   String email;
   String image;
   String password;
-  String recordNumber;
-  String personalIdentity;
+  String tax_num;
+  String identity_num;
   String address;
   String job;
   double lat;
-  double long;
-  String mainServiceType;
-  String subServiceType;
+  double lng;
   bool approved = false;
   bool visable = true;
-  User(
-      {
-        this.id,
-        this.name,
-        this.phone,
-        this.email,
-        this.password,
-        this.recordNumber,
-        this.personalIdentity,
-        this.address,
-        this.job,
-        this.image,
-        this.lat,
-        this.long});
+
+  User({
+    this.id,
+    this.name,
+    this.phone,
+    this.email,
+    this.password,
+    this.tax_num,
+    this.identity_num,
+    this.address,
+    this.job,
+    this.image,
+    this.lat,
+    this.lng,
+  });
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
@@ -40,15 +47,13 @@ class User {
       'id': this.id,
       'email': this.email,
       'password': this.password,
-      'recordNumber': this.recordNumber,
-      'personalIdentity': this.personalIdentity,
+      'recordNumber': this.tax_num,
+      'personalIdentity': this.identity_num,
       'address': this.address,
       'job': this.job,
       'lat': this.lat,
-      'long': this.long,
-      'mainServiceType': this.mainServiceType,
+      'lng': this.lng,
       'image': this.image,
-      'subServiceType': this.subServiceType,
       'approved': this.approved,
       'visable': this.visable,
     };
@@ -61,15 +66,13 @@ class User {
     this.phone = json['phone'];
     this.email = json['email'];
     this.password = json['password'];
-    this.recordNumber = json['recordNumber'];
-    this.personalIdentity = json['personalIdentity'];
+    this.tax_num = json['recordNumber'];
+    this.identity_num = json['identity_num'];
     this.address = json['address'];
     this.job = json['job'];
     this.id = json['id'];
     this.lat = json['lat'];
-    this.long = json['long'];
-    this.mainServiceType = json['mainServiceType'];
-    this.subServiceType = json['subServiceType'];
+    this.lng = json['lng'];
     this.approved = json['approved'];
     this.visable = json['visable'];
     this.image = json['image'];
