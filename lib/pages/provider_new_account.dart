@@ -139,8 +139,17 @@ class _providerNewAccountState extends State<providerNewAccount> {
                                 context: context,
                                 builder: (ctx) {
                                   return AlertDialog(
-                                    title: Text('تنبيه'),
-                                    content: Text('هذا البريد مستخدم من قبل'),
+                                    content: Text(
+                                        "هذا البريد الإلكتروني مستخدم من قبل !"),
+                                    actions: [
+                                      FlatButton(
+                                          onPressed: () {
+                                            Navigator.of(context,
+                                                    rootNavigator: false)
+                                                .pop('اغلاق');
+                                          },
+                                          child: Text('موافق')),
+                                    ],
                                   );
                                 });
                           } else {
