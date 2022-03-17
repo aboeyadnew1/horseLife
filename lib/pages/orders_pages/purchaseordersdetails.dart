@@ -257,93 +257,6 @@ class _PurchaseOrdersDetailsState extends State<PurchaseOrdersDetails> {
               ),
             );
           }),
-      floatingActionButton: new FloatingActionButton(
-        child: const Icon(
-          Icons.comment,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          showDialog(
-              barrierDismissible: true,
-              context: context,
-              builder: (BuildContext context) {
-                return Dialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  //this right here
-                  child: Container(
-                    height: 250,
-                    width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "اضافة شكوي جديدة",
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Cairo',
-                                color: Colors.black),
-                          ),
-                          TextField(
-                            textAlign: TextAlign.center,
-                            controller: txt_con,
-                            decoration: InputDecoration(
-                              hintText: "نص الشكوي ..",
-                              contentPadding:
-                                  EdgeInsets.symmetric(vertical: 12),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15),
-                                borderSide: BorderSide(
-                                  color: Color.fromRGBO(72, 175, 218, 1),
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-
-                              if (txt_con.text.trim() == "") {
-                                Fluttertoast.showToast(
-                                    msg: "نص الشكوي مطلوب  !".toString(),
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.green,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-                              } else {
-                                _store.addComplaint(
-                                    new Complaint(
-                                        user_id: userpro.user.id,
-                                        username: userpro.user.name,
-                                        order_id: order.id,
-                                        text: txt_con.text),
-                                    context);
-                              }
-                            },
-                            child: Text(
-                              "ارسال",
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Cairo',
-                                  color: Colors.blue),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              });
-        },
-      ),
     );
   }
 }
@@ -359,6 +272,7 @@ class TimeLine extends StatefulWidget {
 
 class _TimeLineState extends State<TimeLine> {
   final Order data;
+  final _store = new Store();
 
   _TimeLineState(this.data);
 
@@ -399,14 +313,85 @@ class _TimeLineState extends State<TimeLine> {
                               ? Colors.black26
                               : Colors.green,
                           borderRadius: BorderRadius.circular(50)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Icon(
-                          data[index].id == "0"
-                              ? Icons.circle
-                              : Icons.check_circle,
-                          color: Colors.white,
-                          size: 20,
+                      child: InkWell(
+                        onTap: () {
+                          showDialog(
+                              barrierDismissible: true,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Dialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          20.0)), //this right here
+                                  child: Container(
+                                    height: 200,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "تاكيد تعديل حالة الطلب !",
+                                            style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: 'Cairo',
+                                                color: Colors.black),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(15.0),
+                                            child: Icon(
+                                              Icons.info_outline,
+                                              color: Colors.green,
+                                              size: 50,
+                                            ),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                  child: Center(
+                                                      child: InkWell(
+                                                child: Text("تعديل"),
+                                                onTap: () {
+                                                  this.data.statue =
+                                                      index.toString();
+                                                  this.data.updated_date =
+                                                      data[index].id;
+                                                  _store.editOrder(this.data,
+                                                      this.data.id, context);
+                                                },
+                                              ))),
+                                              Expanded(
+                                                  child: Center(
+                                                      child: InkWell(
+                                                          onTap: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                          child:
+                                                              Text("الغاء"))))
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Icon(
+                            data[index].id == "0"
+                                ? Icons.circle
+                                : Icons.check_circle,
+                            color: Colors.white,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ),

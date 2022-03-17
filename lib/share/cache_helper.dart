@@ -9,14 +9,14 @@ class CacheHelper {
   static Future<User> getModelData({String key}) async {
     sharedPreferences = await SharedPreferences.getInstance();
 
-    if(sharedPreferences.getString('user')!=null){
+    if (sharedPreferences.getString('user') != null) {
       String userPref = sharedPreferences.getString('user');
-      Map<String,dynamic> userMap = jsonDecode(userPref) as Map<String, dynamic>;
+      Map<String, dynamic> userMap =
+          jsonDecode(userPref) as Map<String, dynamic>;
       return User.fromMap(userMap);
-    }else{
+    } else {
       return null;
     }
-
   }
 
   static Future<bool> setModelData({
@@ -24,17 +24,24 @@ class CacheHelper {
     User data,
   }) async {
     sharedPreferences = await SharedPreferences.getInstance();
+    Map<String, dynamic> user;
+    if (data == null) {
+       user={};
+    } else {
+       user = {
+        'id': data.id,
+        'name': data.name,
+        'phone': data.phone,
+        'email': data.email,
+        'password': data.password,
+        'image': data.image,
+        'identity_num': data.personalIdentity,
+        'lat': data.lat,
+        'long': data.long
+      };
+    }
 
-    Map<String, dynamic> user = {
-      'id': data.id,
-      'name': data.name,
-      'phone': data.phone,
-      'password': data.password,
-      'image': data.image
-    };
 
     return await sharedPreferences.setString('user', jsonEncode(user));
   }
-
-
 }

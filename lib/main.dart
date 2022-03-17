@@ -3,9 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hourse_life/constants/constants.dart';
+import 'package:hourse_life/pages/Address.dart';
 import 'package:hourse_life/pages/Services.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
+import 'package:hourse_life/pages/orders_pages/purchaseordersdetails.dart';
 import 'package:hourse_life/provider/UserProvider.dart';
 import 'package:hourse_life/services/static_data.dart';
 import 'package:hourse_life/share/cache_helper.dart';
@@ -59,6 +61,8 @@ class MyApp extends StatelessWidget {
               LogInScreen.id: (context) => LogInScreen(),
               providerHomePage.id: (context) => providerHomePage(),
               Services.id: (context) => Services(),
+              Address.id: (context) => Address(),
+              PurchaseOrdersDetails.id: (context) => PurchaseOrdersDetails(),
             }));
   }
 }

@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/user.dart';
+import 'package:hourse_life/pages/Address.dart';
 import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/services/Store.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -28,11 +31,31 @@ class _EditUserDataState extends State<EditUserData> {
   TextEditingController phone_con = TextEditingController();
   TextEditingController email_con = TextEditingController();
   TextEditingController pass_con = TextEditingController();
-
+  List<Marker> markers = [];
+  Completer<GoogleMapController> _contrioller = Completer();
+@override
+  void initState() {
+    // TODO: implement initState
+  setState(() {
+    markers.clear();
+    Marker _marker = Marker(
+      markerId: MarkerId("1"),
+      position: LatLng(uid.lat, uid.long),
+      infoWindow: InfoWindow(title: "الموقع الحالي"),
+    );
+    markers.add(_marker);
+  });
+  }
   @override
   Widget build(BuildContext context) {
 
-
+    markers.clear();
+    Marker _marker = Marker(
+      markerId: MarkerId("1"),
+      position: LatLng(uid.lat, uid.long),
+      infoWindow: InfoWindow(title: "الموقع الحالي"),
+    );
+    markers.add(_marker);
     if (uid != null) {
       name_con.text = uid.name;
       address_con.text = uid.address;
@@ -231,6 +254,59 @@ class _EditUserDataState extends State<EditUserData> {
             ),
             SizedBox(
               height: 40.0,
+            ),  GestureDetector(
+              onTap: () {
+                showPlacePicker();
+              },
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Text(
+                        "اضافة الموقع على الخريطة",
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Icon(
+                      Icons.add_circle,
+                      color: Color.fromRGBO(72, 175, 218, 1),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black26,
+                  //                   <--- border color
+                  width: 3.0,
+                ),
+              ),
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.all(10),
+              height: 150,
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: CameraPosition(
+                    target: LatLng(uid.lat, uid.long),
+                    zoom: 10.0),
+                onMapCreated: (GoogleMapController googlemapcontroller) {
+                  _contrioller.complete(googlemapcontroller);
+                },
+                markers: Set.from(markers),
+                onTap: (pos) {
+                  showPlacePicker();
+                },
+              ),
             ),
             Container(
               width: MediaQuery.of(context).size.width - 50,
@@ -379,5 +455,20 @@ class _EditUserDataState extends State<EditUserData> {
         pr.hide();
       });
     });
+  }
+  void showPlacePicker() {
+  /*  if (email_con.text.toString().trim() != "") {
+      AddressProvider.email = email_con.text.toString();
+    }
+    if (address_con.text.toString().trim() != "") {
+      AddressProvider.address = address_con.text.toString();
+    }
+    if (state_con.text.toString().trim() != "") {
+      AddressProvider.state = state_con.text.toString();
+    }*/
+
+    Navigator.of(context).pushReplacementNamed(
+      Address.id,
+    );
   }
 }

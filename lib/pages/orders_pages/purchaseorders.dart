@@ -68,7 +68,7 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
             }
             return Scaffold(
               body: DefaultTabController(
-                length: 3,
+                length: 5,
                 child: Scaffold(
                     body: NestedScrollView(
                   headerSliverBuilder:
@@ -92,11 +92,16 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
                           tabs: [
                             Tab(
                                 child: Text(
-                              'طلبات تحت الأجراء',
+                              ' تحت الأجراء',
                               style: TextStyle(color: Colors.white),
                             )),
                             Tab(
-                                child: Text('طلبات تم توصيلها',
+                                child: Text('جاري الشحن',
+                                    style: TextStyle(color: Colors.white))),
+                            Tab(
+                                child: Text('تم الشحن',
+                                    style: TextStyle(color: Colors.white))), Tab(
+                                child: Text('تم التوصيل ',
                                     style: TextStyle(color: Colors.white))),
                             Tab(
                                 child: Text(' طلبات ملغية',
@@ -108,9 +113,11 @@ class _PurchaseOrdersState extends State<PurchaseOrders> {
                   },
                   body: TabBarView(
                     children: <Widget>[
-                      order1(getorderbystatue("0")),
-                      order1(getorderbystatue("2")),
-                      order1(getorderbystatue("4")),
+                      order1(getorderbystatue("0"),"0"),
+                      order1(getorderbystatue("1"),"1"),
+                      order1(getorderbystatue("2"),"2"),
+                      order1(getorderbystatue("3"),"3"),
+                      order1(getorderbystatue("4"),"4"),
                       // Customers_home(),
                       // PurchaseOrders(),
                       // UserComplaints(),

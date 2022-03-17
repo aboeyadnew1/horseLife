@@ -9,18 +9,21 @@ import '../../widgets/App_Bar.dart';
 
 class order1 extends StatefulWidget {
   List<Order> getorderbystatue;
+  String statue;
 
-  order1(this.getorderbystatue, {Key key}) : super(key: key);
+  order1(this.getorderbystatue, this.statue, {Key key}) : super(key: key);
 
   @override
-  _order1State createState() => _order1State(this.getorderbystatue);
+  _order1State createState() =>
+      _order1State(this.getorderbystatue, this.statue);
 }
 
 class _order1State extends State<order1> {
   List<Order> getorderbystatue;
   ScrollController controller = ScrollController();
+  String statue;
 
-  _order1State(this.getorderbystatue);
+  _order1State(this.getorderbystatue, this.statue);
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +188,7 @@ class _order1State extends State<order1> {
                                             : Expanded(
                                                 child: ElevatedButton(
                                                   child: Text(
-                                                    'تتبع طلب الشراء ',
+                                                    'تتبع الطلب ',
                                                     style: TextStyle(
                                                         fontSize: 16.0,
                                                         color: Colors.white,
@@ -229,14 +232,9 @@ class _order1State extends State<order1> {
                                                                 ),
                                                                 Container(
                                                                   child:
-                                                                      InkWell(
-                                                                    child:
-                                                                        TimeLine(
-                                                                      data: getorderbystatue[
-                                                                          index],
-                                                                    ),
-                                                                    onTap:
-                                                                        () {},
+                                                                      TimeLine(
+                                                                    data: getorderbystatue[
+                                                                        index],
                                                                   ),
                                                                 ),
                                                               ],

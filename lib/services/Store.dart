@@ -28,10 +28,13 @@ class Store {
     final ProgressDialog pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
     await pr.show();
-
+    DateTime now = DateTime.now();
+    String date2 = now.year.toString() +"-"+
+        now.month.toString() +"-"+
+        now.day.toString();
     _firestore.collection("Orders").doc(documentId).update({
       'delivered_date': order.delivered_date,
-      'updated_date': order.updated_date,
+      'updated_date': date2,
       'statue': order.statue,
       'rate': order.rate,
     }).then((value) async {
@@ -45,8 +48,19 @@ class Store {
           fontSize: 16.0);
 
       await pr.hide();
+      Navigator.of(
+          context)
+          .pop();
     }).onError((error, stackTrace) async {
       await pr.hide();
+      Fluttertoast.showToast(
+          msg: error.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
     });
   }
 
