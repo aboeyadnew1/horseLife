@@ -2,13 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/user.dart';
-import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:hourse_life/pages/home_page/provider_home_page.dart';
 import 'package:hourse_life/pages/provider_new_account.dart';
-import 'package:hourse_life/pages/registration_done.dart';
-import 'package:hourse_life/pages/sign_in_page.dart';
 import 'package:hourse_life/services/api_provider.dart';
-import 'package:hourse_life/services/static_data.dart';
+import 'package:hourse_life/services/shared_prefrerence_provider.dart';
 import 'package:hourse_life/share/cache_helper.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
@@ -68,8 +65,8 @@ class _LogInScreenState extends State<LogInScreen> {
 
                       if (data.docs.isNotEmpty) {
                         // set userid in shared preference
-                        var userDoc = data.docs.first;
-                        setUserId(userDoc.id);
+                        // setUserId(userDoc.id);  var userDoc = data.docs.first;
+
                         User user = User(
                             id: data.docs.first.get("id"),
                             name: data.docs.first.get("name"),
@@ -84,12 +81,12 @@ class _LogInScreenState extends State<LogInScreen> {
 
                         CacheHelper.setModelData(key: kUid, data: user)
                             .then((value) {
-                          print(userDoc.get("name"));
-                          pr.hide();
+                          // print(userDoc.get("name"));   pr.hide();
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => providerHomePage()));
+                          // print('user id $kUid');
                         });
                       } else {
                         pr.hide();

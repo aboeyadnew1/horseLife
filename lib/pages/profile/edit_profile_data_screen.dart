@@ -40,7 +40,7 @@ class _EditUserDataState extends State<EditUserData> {
     markers.clear();
     Marker _marker = Marker(
       markerId: MarkerId("1"),
-      position: LatLng(uid.lat, uid.long),
+      position: LatLng(uid.lat, uid.lng),
       infoWindow: InfoWindow(title: "الموقع الحالي"),
     );
     markers.add(_marker);
@@ -52,7 +52,7 @@ class _EditUserDataState extends State<EditUserData> {
     markers.clear();
     Marker _marker = Marker(
       markerId: MarkerId("1"),
-      position: LatLng(uid.lat, uid.long),
+      position: LatLng(uid.lat, uid.lng),
       infoWindow: InfoWindow(title: "الموقع الحالي"),
     );
     markers.add(_marker);
@@ -297,7 +297,7 @@ class _EditUserDataState extends State<EditUserData> {
               child: GoogleMap(
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
-                    target: LatLng(uid.lat, uid.long),
+                    target: LatLng(uid.lat, uid.lng),
                     zoom: 10.0),
                 onMapCreated: (GoogleMapController googlemapcontroller) {
                   _contrioller.complete(googlemapcontroller);
@@ -382,8 +382,8 @@ class _EditUserDataState extends State<EditUserData> {
                                 password: pass_con.text,
                                 address: address_con.text,
                                 lat: uid.lat,
-                                personalIdentity: uid.personalIdentity,
-                                long: uid.long)
+                            identity_num: uid.identity_num,
+                                lng: uid.lng)
                             .toMap(),
                         uid.id,
                         context);

@@ -35,9 +35,9 @@ class CacheHelper {
         'email': data.email,
         'password': data.password,
         'image': data.image,
-        'identity_num': data.personalIdentity,
+        'identity_num': data.identity_num,
         'lat': data.lat,
-        'long': data.long
+        'long': data.lng
       };
     }
 

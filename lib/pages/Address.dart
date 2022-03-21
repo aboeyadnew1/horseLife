@@ -26,7 +26,7 @@ class _AddressState extends State<Address> {
       _marker = Marker(
         markerId: MarkerId(MapDimensions.mapList[0]['id']),
         position: uid.lat != null
-            ? LatLng(uid.lat, uid.long)
+            ? LatLng(uid.lat, uid.lng)
             : LatLng(
                 MapDimensions.mapList[0]['lat'],
                 MapDimensions.mapList[0]['lng'],
@@ -60,7 +60,7 @@ class _AddressState extends State<Address> {
                     setState(() {
                       markers.add(f);
                       uid.lat = pos.latitude;
-                      uid.long = pos.longitude;
+                      uid.lng = pos.longitude;
                     });
                   },
                 ),

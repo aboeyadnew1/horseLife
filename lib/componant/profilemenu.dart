@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({
     Key key,
     @required this.text,
     @required this.press,
-    this.icons, 
+    this.icons,
     this.FontAwesomeIcons,
-
   }) : super(key: key);
 
   final String text;
@@ -33,12 +30,10 @@ class ProfileMenu extends StatelessWidget {
             SizedBox(
               width: 20.0,
             ),
-
             Expanded(
               child: Text(text),
             ),
             Icon(Icons.arrow_forward_ios),
-
           ],
         ),
       ),
