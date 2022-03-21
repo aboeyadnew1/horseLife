@@ -42,13 +42,13 @@ class User {
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
+      'id': this.id,
       'name': this.name,
       'phone': this.phone,
-      'id': this.id,
       'email': this.email,
       'password': this.password,
-      'recordNumber': this.tax_num,
-      'personalIdentity': this.identity_num,
+      'tax_num': this.tax_num,
+      'identity_num': this.identity_num,
       'address': this.address,
       'job': this.job,
       'lat': this.lat,
@@ -62,6 +62,7 @@ class User {
   }
 
   User.fromMap(Map<String, dynamic> json) {
+    this.id = json['id'];
     this.name = json['name'];
     this.phone = json['phone'];
     this.email = json['email'];
@@ -70,7 +71,6 @@ class User {
     this.identity_num = json['identity_num'];
     this.address = json['address'];
     this.job = json['job'];
-    this.id = json['id'];
     this.lat = json['lat'];
     this.lng = json['lng'];
     this.approved = json['approved'];

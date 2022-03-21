@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_life/pages/login_screen.dart';
 
-import 'package:hourse_life/services/static_data.dart';
+import 'package:hourse_life/services/shared_prefrerence_provider.dart';
 
 class SecondIntro extends StatelessWidget {
   const SecondIntro({Key key}) : super(key: key);

@@ -7,7 +7,7 @@ import 'package:hourse_life/models/MainService.dart';
 import 'package:hourse_life/models/SubService.dart';
 import 'package:hourse_life/models/service.dart';
 import 'package:hourse_life/services/Store.dart';
-import 'package:hourse_life/services/static_data.dart';
+import 'package:hourse_life/services/shared_prefrerence_provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:progress_dialog/progress_dialog.dart';
