@@ -8,6 +8,7 @@ import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/Address.dart';
 import 'package:hourse_life/pages/login_screen.dart';
 import 'package:hourse_life/services/Store.dart';
+import 'package:hourse_life/share/cache_helper.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -33,22 +34,28 @@ class _EditUserDataState extends State<EditUserData> {
   TextEditingController pass_con = TextEditingController();
   List<Marker> markers = [];
   Completer<GoogleMapController> _contrioller = Completer();
-@override
-  void initState() {
-    // TODO: implement initState
-  setState(() {
-    markers.clear();
-    Marker _marker = Marker(
-      markerId: MarkerId("1"),
-      position: LatLng(uid.lat, uid.lng),
-      infoWindow: InfoWindow(title: "الموقع الحالي"),
-    );
-    markers.add(_marker);
+getFromShared(){
+  CacheHelper.getModelData(key: kUid).then((value) {
+    uid = value;
   });
+}
+  @override
+  void initState() {
+    getFromShared();
+    // TODO: implement initState
+    setState(() {
+      markers.clear();
+      Marker _marker = Marker(
+        markerId: MarkerId("1"),
+        position: LatLng(uid.lat, uid.lng),
+        infoWindow: InfoWindow(title: "الموقع الحالي"),
+      );
+      markers.add(_marker);
+    });
   }
+
   @override
   Widget build(BuildContext context) {
-
     markers.clear();
     Marker _marker = Marker(
       markerId: MarkerId("1"),
@@ -65,46 +72,46 @@ class _EditUserDataState extends State<EditUserData> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        toolbarHeight: 80,
-        leading: new IconButton(
-          icon: new Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 80,
+          leading: new IconButton(
+            icon: new Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        backgroundColor: Color.fromRGBO(100, 192, 229, 1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
+          backgroundColor: Color.fromRGBO(100, 192, 229, 1),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(30),
+            ),
+          ),
+          title: new Text(
+            'بيانات الحساب',
+            style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Cairo',
+                color: Colors.white),
           ),
         ),
-        title: new Text(
-          'بيانات الحساب',
-          style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w400,
-              fontFamily: 'Cairo',
-              color: Colors.white),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
+        body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+              SizedBox(
               height: 20.0,
             ),
             SizedBox(
-              height: 115.0,
-              width: 115.0,
-              child: Stack(
+                height: 115.0,
+                width: 115.0,
+                child: Stack(
                   fit: StackFit.expand,
                   overflow: Overflow.visible,
                   children: [
@@ -116,7 +123,7 @@ class _EditUserDataState extends State<EditUserData> {
                               fit: BoxFit.cover,
                         width: 110,height: 110,
                             )
-                          : uid == null
+                          : uid.image == null
                               ? Image.asset('images/profile.png',
                           width: 110,height: 110,
                                   fit: BoxFit.cover)
@@ -404,7 +411,7 @@ class _EditUserDataState extends State<EditUserData> {
         ),
       ),
     );
-  }
+    }
 
   String now_date;
 
@@ -412,7 +419,9 @@ class _EditUserDataState extends State<EditUserData> {
     final ProgressDialog pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
 
-    if (await Permission.storage.request().isGranted) {
+    if (await Permission.storage
+        .request()
+        .isGranted) {
       // Either the permission was already granted before or the user just granted it.
     }
 
@@ -441,7 +450,7 @@ class _EditUserDataState extends State<EditUserData> {
           "\-" +
           now.second.toString();
       firebase_storage.Reference storageReference =
-          FirebaseStorage.instance.ref().child(now_date);
+      FirebaseStorage.instance.ref().child(now_date);
       firebase_storage.UploadTask uploadTask = storageReference.putFile(_image);
       uploadTask.whenComplete(() {
         pr.hide();
@@ -456,8 +465,9 @@ class _EditUserDataState extends State<EditUserData> {
       });
     });
   }
+
   void showPlacePicker() {
-  /*  if (email_con.text.toString().trim() != "") {
+    /*  if (email_con.text.toString().trim() != "") {
       AddressProvider.email = email_con.text.toString();
     }
     if (address_con.text.toString().trim() != "") {

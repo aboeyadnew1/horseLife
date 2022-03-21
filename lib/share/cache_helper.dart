@@ -37,7 +37,7 @@ class CacheHelper {
         'image': data.image,
         'identity_num': data.identity_num,
         'lat': data.lat,
-        'long': data.lng
+        'lng': data.lng
       };
     }
 

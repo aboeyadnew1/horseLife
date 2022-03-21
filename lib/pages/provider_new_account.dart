@@ -6,7 +6,6 @@ import 'package:hourse_life/map/map_page.dart';
 import 'package:hourse_life/models/user.dart';
 import 'package:hourse_life/pages/home_page/home.dart';
 import 'package:search_choices/search_choices.dart';
-
 import 'registration_done.dart';
 
 class providerNewAccount extends StatefulWidget {
@@ -92,6 +91,7 @@ class _providerNewAccountState extends State<providerNewAccount> {
                               lat = position.latitude;
                               lng = position.longitude;
                             }
+                            return;
                           });
                         },
                       ),
