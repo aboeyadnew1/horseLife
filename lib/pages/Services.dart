@@ -45,7 +45,7 @@ class _ServicesState extends State<Services> {
               for (var doc in snapshot.data.docs) {
                 if (doc.get("vendor_id") == uid.id) {
                   service_list.add(ServiceModel(
-                      id: doc.reference.id,
+                      id: doc.get("id"),
                       name: doc.get("name"),
                       price: doc.get("price"),
                       quantity: doc.get("quantity"),

@@ -96,7 +96,7 @@ class _newServiceState extends State<newService> {
                         child: Center(
                           child: Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Column(
                               children: [
                                 SizedBox(
@@ -104,7 +104,7 @@ class _newServiceState extends State<newService> {
                                 ),
                                 Container(
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 10.0),
+                                  EdgeInsets.symmetric(horizontal: 10.0),
                                   child: Column(
                                     children: [
                                       Image.asset(
@@ -114,7 +114,7 @@ class _newServiceState extends State<newService> {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: const [
                                           Text(
                                             'تسجيل خدمة جديدة',
@@ -217,7 +217,7 @@ class _newServiceState extends State<newService> {
                                                   128, 128, 128, 0.5),
                                               width: 1),
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                          BorderRadius.circular(10),
                                         ),
                                         padding: const EdgeInsets.all(10.0),
                                         child: TextField(
@@ -263,7 +263,7 @@ class _newServiceState extends State<newService> {
                                                   128, 128, 128, 0.5),
                                               width: 1),
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                          BorderRadius.circular(10),
                                         ),
                                         padding: const EdgeInsets.all(5.0),
                                         child: TextField(
@@ -289,11 +289,11 @@ class _newServiceState extends State<newService> {
                                 // ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
+                                  MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Padding(
                                       padding:
-                                          const EdgeInsets.only(left: 40.0),
+                                      const EdgeInsets.only(left: 40.0),
                                       child: Text(
                                         'الكمية',
                                         style: TextStyle(
@@ -319,7 +319,7 @@ class _newServiceState extends State<newService> {
                                 // ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  MainAxisAlignment.spaceAround,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -397,7 +397,7 @@ class _newServiceState extends State<newService> {
                                                   128, 128, 128, 0.5),
                                               width: 1),
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                          BorderRadius.circular(10),
                                         ),
                                         padding: const EdgeInsets.all(10.0),
                                         child: TextField(
@@ -440,7 +440,7 @@ class _newServiceState extends State<newService> {
                                                   128, 128, 128, 0.5),
                                               width: 1),
                                           borderRadius:
-                                              BorderRadius.circular(10),
+                                          BorderRadius.circular(10),
                                         ),
                                         padding: const EdgeInsets.all(10.0),
                                         child: TextField(
@@ -459,7 +459,7 @@ class _newServiceState extends State<newService> {
                                     ),
                                   ],
                                 ),
-                                // SizedBox(
+                                // SizedBox(*
                                 //   height: 20.0,
                                 // ),
                                 Padding(
@@ -468,7 +468,7 @@ class _newServiceState extends State<newService> {
                                     children: [
                                       Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             'إضافة صورة للمنتج',
@@ -488,16 +488,16 @@ class _newServiceState extends State<newService> {
                                                         72, 175, 218, 1),
                                                     width: 2),
                                                 borderRadius:
-                                                    BorderRadius.circular(10),
+                                                BorderRadius.circular(10),
                                               ),
                                               padding:
-                                                  const EdgeInsets.all(10.0),
+                                              const EdgeInsets.all(10.0),
                                               child: InkWell(
                                                 child: _image == null
                                                     ? Icon(
-                                                        Icons.add_a_photo,
-                                                        size: 30.0,
-                                                      )
+                                                  Icons.add_a_photo,
+                                                  size: 30.0,
+                                                )
                                                     : Image.file(_image),
                                                 onTap: () {
                                                   chooseFile(context);
@@ -534,42 +534,38 @@ class _newServiceState extends State<newService> {
                                           now.millisecond.toString() +
                                           now.microsecond.toString();
 
-                                      getUserId().then((value) async {
-                                        var serviceModel = ServiceModel(
-                                            id: now_date,
-                                            name: txtName.text,
-                                            description: textDescription.text,
-                                            quantity:
-                                                double.parse(textQuantity.text),
-                                            deliveryMethod:
-                                                textDeliveryMethod.text,
-                                            deliveryTime: textDeliveryTime.text,
-                                            price: double.parse(textPrice.text),
-                                            image: _uploadedFileURL,
-                                            mainServiceType: getmainid(
-                                                selectedmainValue,
-                                                mainservices),
-                                            subServiceType: getsubid(
-                                                selectedsubValue, subservices),
-                                            rate: 0,
-                                            vendor_id: value);
-                                        var service = await firestore
-                                            .doc(now_date)
-                                            .set(serviceModel.toMap());
+                                      var serviceModel = ServiceModel(
+                                          id: now_date,
+                                          name: txtName.text,
+                                          description: textDescription.text,
+                                          quantity:
+                                          double.parse(textQuantity.text),
+                                          deliveryMethod:
+                                          textDeliveryMethod.text,
+                                          deliveryTime: textDeliveryTime.text,
+                                          price: double.parse(textPrice.text),
+                                          image: _uploadedFileURL,
+                                          mainServiceType: getmainid(
+                                              selectedmainValue, mainservices),
+                                          subServiceType: getsubid(
+                                              selectedsubValue, subservices),
+                                          rate: 0,
+                                          vendor_id: uid.id);
+                                      var service = await firestore
+                                          .doc(now_date)
+                                          .set(serviceModel.toMap());
 
-                                        txtName.text = '';
-                                        textDescription.text = '';
-                                        textQuantity.text = '';
-                                        textPrice.text = '';
-                                        textDeliveryMethod.text = '';
-                                        textDeliveryTime.text = '';
-
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (builder) =>
-                                                    providerHomePage()));
-                                      });
+                                      txtName.text = '';
+                                      textDescription.text = '';
+                                      textQuantity.text = '';
+                                      textPrice.text = '';
+                                      textDeliveryMethod.text = '';
+                                      textDeliveryTime.text = '';
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (builder) =>
+                                                  providerHomePage()));
                                     },
                                     child: Text(
                                       'إضافة الخدمة',
@@ -581,11 +577,11 @@ class _newServiceState extends State<newService> {
                                     ),
                                     style: ElevatedButton.styleFrom(
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
+                                      EdgeInsets.symmetric(horizontal: 20),
                                       primary: Color.fromRGBO(72, 175, 218, 1),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     ),
                                   ),
                                 ),
@@ -649,7 +645,9 @@ class _newServiceState extends State<newService> {
     final ProgressDialog pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: false, showLogs: true);
 
-    if (await Permission.storage.request().isGranted) {
+    if (await Permission.storage
+        .request()
+        .isGranted) {
       // Either the permission was already granted before or the user just granted it.
     }
 
@@ -678,7 +676,7 @@ class _newServiceState extends State<newService> {
           "\-" +
           now.second.toString();
       firebase_storage.Reference storageReference =
-          FirebaseStorage.instance.ref().child(now_date);
+      FirebaseStorage.instance.ref().child(now_date);
       firebase_storage.UploadTask uploadTask = storageReference.putFile(_image);
       uploadTask.whenComplete(() {
         pr.hide();
