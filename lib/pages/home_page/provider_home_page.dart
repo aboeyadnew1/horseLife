@@ -55,12 +55,14 @@ class _providerHomePageState extends State<providerHomePage> {
         .get()
         .then((value) {
       setState(() {
-        delivery += 1;
         data = [
           _ChartData('طلبات جديدة', initial.toDouble()),
           _ChartData('طلبات الشحن', delivery.toDouble()),
           _ChartData('طلبات ملغية', not_delivered.toDouble()),
         ];
+        if (value.size != 0) {
+          delivery += 1;
+        }
 
         var nums = [
           initial.toDouble(),
@@ -79,12 +81,15 @@ class _providerHomePageState extends State<providerHomePage> {
         .get()
         .then((value) {
       setState(() {
-        initial += 1;
         data = [
           _ChartData('طلبات جديدة', initial.toDouble()),
           _ChartData('طلبات الشحن', delivery.toDouble()),
           _ChartData('طلبات ملغية', not_delivered.toDouble()),
         ];
+
+        if (value.size != 0) {
+          initial += 1;
+        }
         var nums = [
           initial.toDouble(),
           delivery.toDouble(),
@@ -102,12 +107,15 @@ class _providerHomePageState extends State<providerHomePage> {
         .get()
         .then((value) {
       setState(() {
-        not_delivered += 1;
         data = [
           _ChartData('طلبات جديدة', initial.toDouble()),
           _ChartData('طلبات الشحن', delivery.toDouble()),
           _ChartData('طلبات ملغية', not_delivered.toDouble()),
         ];
+        if (value.size != 0) {
+          not_delivered += 1;
+        }
+
         var nums = [
           initial.toDouble(),
           delivery.toDouble(),
@@ -426,7 +434,9 @@ class _providerHomePageState extends State<providerHomePage> {
                                               primaryYAxis: NumericAxis(
                                                   minimum: 0,
                                                   maximum: largest + 2,
-                                                  interval: minimun / 2),
+                                                  interval: minimun == 0
+                                                      ? 1
+                                                      : minimun / 2),
                                               tooltipBehavior: _tooltip,
                                               series: <
                                                   ChartSeries<_ChartData,

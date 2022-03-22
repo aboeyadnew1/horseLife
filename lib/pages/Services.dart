@@ -110,10 +110,7 @@ class _ServicesState extends State<Services> {
                     return Padding(
                       padding: const EdgeInsets.all(1),
                       child: GestureDetector(
-                        onTap: () {
-
-
-                        },
+                        onTap: () {},
                         child: Container(
                           margin: EdgeInsets.only(top: 0),
                           child: Stack(
@@ -193,48 +190,44 @@ class _ServicesState extends State<Services> {
                                                 ],
                                               ),
                                               ExpansionTile(
-                                                  initiallyExpanded: initial,
-                                                  iconColor: Colors.white,
-                                                  collapsedIconColor: Colors.white
-
-                                                ,
-                                                  onExpansionChanged: (bool) {
-                                                    setState(() {
-                                                      initial = bool;
-                                                    });
-                                                  },
-                                                  title: Text(
+                                                initiallyExpanded: initial,
+                                                iconColor: Colors.white,
+                                                collapsedIconColor:
+                                                    Colors.white,
+                                                onExpansionChanged: (bool) {
+                                                  setState(() {
+                                                    initial = bool;
+                                                  });
+                                                },
+                                                title: Text(
+                                                  service_list2[index]
+                                                      .description
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      color: Colors.black87),
+                                                ),
+                                                subtitle: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(' السعر :' +
                                                         service_list2[index]
-                                                            .description
-                                                            .toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        color: Colors.black87),
-                                                  ),
-                                                  subtitle: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                          ' السعر :' +
-                                                              service_list2[
-                                                                      index]
-                                                                  .price
-                                                                  .toString()),
-                                                      Text(' الكمية :' +
-                                                          service_list2[index]
-                                                              .quantity
-                                                              .toString())
-                                                    ],
-                                                  ),
-                                                  controlAffinity:
-                                                      ListTileControlAffinity
-                                                          .trailing,
-
-                                              )]),
+                                                            .price
+                                                            .toString()),
+                                                    Text(' الكمية :' +
+                                                        service_list2[index]
+                                                            .quantity
+                                                            .toString())
+                                                  ],
+                                                ),
+                                                controlAffinity:
+                                                    ListTileControlAffinity
+                                                        .trailing,
+                                              )
+                                            ]),
                                       ),
                                     ),
                                   ))
