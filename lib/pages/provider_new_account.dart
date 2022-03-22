@@ -178,6 +178,15 @@ class _providerNewAccountState extends State<providerNewAccount> {
                                         image: '')
                                     .toMap());
 
+                            txtName.text = "";
+                            txtPhone.text = "";
+                            txtEmail.text = "";
+                            txtPassword.text = "";
+                            tax_num.text = "";
+                            txtIdentity_num.text = "";
+                            txtAddress.text = "";
+                            txtJob.text = "";
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(

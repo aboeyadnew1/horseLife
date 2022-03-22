@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hourse_life/constants/constants.dart';
 import 'package:hourse_life/models/MainService.dart';
 import 'package:hourse_life/models/SubService.dart';
 import 'package:hourse_life/models/service.dart';
@@ -517,8 +518,25 @@ class _newServiceState extends State<newService> {
                                   height: 50.0,
                                   child: ElevatedButton(
                                     onPressed: () async {
+                                      DateTime now = DateTime.now();
+                                      String date2 = now.year.toString() +
+                                          "-" +
+                                          now.month.toString() +
+                                          "-" +
+                                          now.day.toString();
+
+                                      String now_date = now.year.toString() +
+                                          now.month.toString() +
+                                          now.day.toString() +
+                                          now.hour.toString() +
+                                          now.minute.toString() +
+                                          now.second.toString() +
+                                          now.millisecond.toString() +
+                                          now.microsecond.toString();
+
                                       getUserId().then((value) async {
                                         var serviceModel = ServiceModel(
+                                            id: now_date,
                                             name: txtName.text,
                                             description: textDescription.text,
                                             quantity:
@@ -536,7 +554,8 @@ class _newServiceState extends State<newService> {
                                             rate: 0,
                                             vendor_id: value);
                                         var service = await firestore
-                                            .add(serviceModel.toMap());
+                                            .doc(now_date)
+                                            .set(serviceModel.toMap());
 
                                         txtName.text = '';
                                         textDescription.text = '';
